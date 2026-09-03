@@ -21,3 +21,4 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm test
+      - run: docker build --tag exam-system-excel-to-public-v2:ci .
