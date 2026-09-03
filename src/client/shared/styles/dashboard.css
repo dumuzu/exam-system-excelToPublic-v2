@@ -1,0 +1,117 @@
+.dashboardHeader {
+  display: flex;
+  min-height: 42px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--borderStrong);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboardHeader h1 {
+  margin: 0;
+  font-family: var(--fontDisplay);
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.refreshStatus {
+  min-width: 64px;
+  margin: 0;
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+  text-align: right;
+}
+
+.dashboardFlow {
+  display: grid;
+  gap: 28px;
+  padding-top: 18px;
+}
+
+.metricBand {
+  display: grid;
+  min-height: 82px;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusPanel);
+  overflow: hidden;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: var(--surface);
+}
+
+.metricBand > div {
+  display: grid;
+  padding: 16px 20px;
+  border-right: 1px solid var(--border);
+  align-content: center;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+.metricBand span {
+  align-self: center;
+  color: var(--foregroundMuted);
+  font-size: 0.78rem;
+}
+
+.metricBand strong {
+  font-size: 1.75rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.sectionHeading {
+  display: flex;
+  min-height: 42px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--borderStrong);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionHeading h2 {
+  margin-bottom: 0;
+  font-size: 1.05rem;
+  font-weight: 750;
+}
+
+.sectionHeading > span {
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.operationsTable {
+  border-bottom: 1px solid var(--border);
+}
+
+.operationRow {
+  display: flex;
+  min-height: 58px;
+  padding: 12px 10px;
+  border-top: 1px solid var(--border);
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  transition: background-color var(--durationFast) var(--easeOut);
+}
+
+.operationRow:hover {
+  background: var(--surfaceRaised);
+}
+
+.operationAction {
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.operationRow > strong {
+  font-size: 0.9rem;
+}
+
+.recentSection {
+  min-width: 0;
+}

@@ -1,0 +1,295 @@
+.accountPageFlow {
+  display: grid;
+  min-width: 0;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+@media (max-width: 980px) {
+  .accountRouteHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .accountRouteHeader > div:first-child {
+    display: grid;
+    gap: 4px;
+  }
+
+  .accountRouteHeader .routeHeaderActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+.accountDirectory {
+  min-width: 0;
+  border-top: 1px solid var(--borderStrong);
+  background: var(--surface);
+}
+
+.accountDirectoryHeader {
+  display: flex;
+  min-height: 54px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.accountDirectoryHeader h2 {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.accountDirectoryHeader span {
+  color: var(--foregroundMuted);
+  font-family: var(--fontNumeric);
+  font-size: 0.75rem;
+}
+
+.accountDirectory .dataTable {
+  min-width: 1040px;
+}
+
+.accountIdentity {
+  display: grid;
+}
+
+.accountIdentity code {
+  overflow-wrap: anywhere;
+}
+
+.accountMembershipList {
+  display: grid;
+  min-width: 210px;
+  padding: 0;
+  margin: 0;
+  gap: 6px;
+  list-style: none;
+}
+
+.accountMembershipList li {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) auto;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.accountMembershipList strong {
+  overflow: hidden;
+  font-size: 0.78rem;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.accountMembershipList span,
+.accountEmptyMembership {
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+}
+
+.accountTableActions {
+  display: flex;
+  min-width: 260px;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.accountTableActions .uiButton {
+  min-height: 34px;
+  padding: 6px 8px;
+  font-size: 0.75rem;
+}
+
+.accountDialog {
+  width: min(620px, calc(100vw - 32px));
+  max-height: min(760px, calc(100vh - 32px));
+  padding: 0;
+  border: 1px solid var(--borderStrong);
+  border-radius: var(--radiusPanel);
+  background: var(--surfaceRaised);
+  color: var(--foreground);
+  box-shadow: var(--shadowDialog);
+}
+
+.accountDialog::backdrop {
+  background: color-mix(in oklch, var(--sidebar) 62%, transparent);
+}
+
+.accountDialogForm {
+  display: grid;
+}
+
+.accountDialogHeader {
+  padding: 24px 24px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.accountDialogHeader h2 {
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+}
+
+.accountDialogHeader p {
+  margin: 0;
+  color: var(--foregroundMuted);
+  line-height: 1.65;
+}
+
+.accountDialogIdentity {
+  display: flex;
+  margin-bottom: 18px;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.accountDialogIdentity code {
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+}
+
+.accountDialogFields {
+  display: grid;
+  padding: 22px 24px;
+  gap: 16px;
+}
+
+.accountDialogFieldPair {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(160px, 0.6fr);
+  gap: 12px;
+}
+
+.accountMembershipPicker {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 0.42fr);
+  align-items: start;
+  gap: 16px;
+}
+
+.accountMembershipPicker fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.accountMembershipPicker legend {
+  margin-bottom: 8px;
+  color: var(--foregroundMuted);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.accountMembershipOptions {
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusControl);
+  background: var(--surface);
+}
+
+.accountMembershipOption {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  min-height: 52px;
+  padding: 10px 12px;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.accountMembershipOption + .accountMembershipOption {
+  border-top: 1px solid var(--border);
+}
+
+.accountMembershipOption:has(input:checked) {
+  background: color-mix(in oklch, var(--primary) 8%, var(--surface));
+}
+
+.accountMembershipOption input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+}
+
+.accountMembershipOption span {
+  display: grid;
+  gap: 2px;
+}
+
+.accountMembershipOption code {
+  color: var(--foregroundSubtle);
+  font-size: 0.72rem;
+}
+
+.accountMembershipEmpty {
+  margin: 0;
+  padding: 14px;
+  border: 1px solid var(--border);
+  color: var(--foregroundMuted);
+  font-size: 0.84rem;
+}
+
+.accountDialogForm > .inlineFeedback {
+  margin: 0 24px 16px;
+}
+
+.accountDialogActions {
+  display: flex;
+  padding: 14px 24px;
+  border-top: 1px solid var(--border);
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@media (max-width: 48rem) {
+  .accountMembershipList,
+  .accountTableActions {
+    min-width: 0;
+  }
+
+  .accountDirectory .dataTable th:first-child,
+  .accountDirectory .dataTable td:first-child {
+    min-width: 170px;
+  }
+
+  .accountDirectory .dataTable th:last-child,
+  .accountDirectory .dataTable td:last-child {
+    position: static;
+    background: var(--surface);
+    box-shadow: none;
+  }
+
+  .accountDialog {
+    max-height: calc(100vh - 16px);
+  }
+
+  .accountDialogFieldPair {
+    grid-template-columns: 1fr;
+  }
+
+  .accountMembershipPicker {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .accountDialogHeader,
+  .accountDialogFields {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .accountDialogActions {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .accountDialogActions .uiButton {
+    flex: 1 1 0;
+  }
+}

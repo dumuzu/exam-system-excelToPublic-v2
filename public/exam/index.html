@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Web 試験</title>
+    <link rel="stylesheet" href="/exam/exam.css" />
+  </head>
+  <body>
+    <header class="examHeader">
+      <span class="brandMark">試</span>
+      <span>Web 試験 <small>Exam Platform</small></span>
+    </header>
+    <main class="examPage">
+      <div class="studentEntryRoot" id="studentEntryRoot">
+      <section class="examCard" id="identity-card">
+        <p class="kicker">IDENTITY CHECK</p>
+        <h1><ruby>本人確認<rt>ほんにんかくにん</rt></ruby></h1>
+        <p class="intro">試験コードと学校に登録した<ruby>学生番号<rt>がくせいばんごう</rt></ruby>を入力してください。<br /><small>Enter the exam code and your registered student number.</small></p>
+        <form id="identityForm" class="identityForm" novalidate>
+          <label>
+            <span><ruby>試験コード<rt>しけんこーど</rt></ruby></span>
+            <input id="exam-code" name="examCode" type="text" autocomplete="off" maxlength="50" required />
+          </label>
+          <label>
+            <span><ruby>学生番号<rt>がくせいばんごう</rt></ruby></span>
+            <input id="student-number" name="studentNumber" type="text" autocomplete="off" maxlength="32" required />
+          </label>
+          <p class="status" id="identity-message" role="alert"></p>
+          <button type="submit"><ruby>入力内容<rt>にゅうりょくないよう</rt></ruby>を確認する<br /><small>CHECK MY DETAILS</small></button>
+        </form>
+      </section>
+
+      <section class="examCard confirmationCard" id="identity-confirm-card" hidden>
+        <p class="kicker">CONFIRM YOUR STUDENT NUMBER</p>
+        <h1>学生番号を確認してください。<br /><small>Check your student number carefully.</small></h1>
+        <p class="identityWarning">間違った学生番号で受験すると、答案が別の学生として記録されます。<br /><small>If the number is wrong, your answers will be recorded for another student.</small></p>
+        <dl class="identityConfirmation"><dt>試験コード<br /><small>Exam code</small></dt><dd id="confirm-exam-code"></dd><dt>学生番号<br /><small>Student number</small></dt><dd id="confirm-student-number"></dd></dl>
+        <div class="confirmationActions"><button class="secondaryAction" id="identity-edit" type="button">入力し直す<br /><small>EDIT</small></button><button id="identity-confirm" type="button">この学生番号で進む<br /><small>YES, CONTINUE</small></button></div>
+        <p class="status" id="confirm-message" role="alert"></p>
+      </section>
+      </div>
+
+      <section class="examCard rulesWaitingCard" id="waiting-card" hidden>
+        <p class="kicker">STRICT EXAM RULES / WAITING ROOM</p>
+        <h1>試験規則を必ず読んでください。<br /><small>Read all exam rules before you begin.</small></h1>
+        <div class="waitingIdentity"><strong id="waiting-student"></strong><span id="waiting-student-number"></span><small><span id="waiting-exam"></span> · <span id="waiting-duration"></span> MINUTES</small></div>
+        <ol class="strictRules">
+          <li><strong>全画面を維持してください。解除されると試験内容は直ちに隠れます。復帰猶予は1回目10秒、2回目5秒、3回目以降3秒で、時間内に戻らない場合のみ警告として記録されます。</strong><small>Leaving this exam window is cheating. Recovery time decreases from 10 seconds to 5 seconds, then 3 seconds for every later interruption. Only a timeout records a warning.</small></li>
+          <li><strong>別のタブ、ウィンドウ、アプリへ切り替えてはいけません。</strong><small>Do not switch to another tab, window, or application.</small></li>
+          <li><strong>コピー、貼り付け、他人との相談は禁止です。</strong><small>Copying, pasting, and communicating with others are prohibited.</small></li>
+          <li><strong>禁止操作は警告として記録されます。</strong><small>Every prohibited action is recorded as a warning.</small></li>
+          <li class="zeroRule"><strong>禁止操作が3回記録されると答案と残り時間を保存して一時停止します。再開には教師の許可が必要です。</strong><small>After 3 recorded violations, the answer sheet and remaining time are preserved and the exam is paused. Teacher approval is required to resume.</small></li>
+        </ol>
+        <div class="waitingStatus" id="waitingStatus"><span class="waitingPulse"></span><strong>先生の入室許可を待っています。</strong><small>Waiting for the teacher to approve your entry.</small></div>
+        <button id="rules-continue" type="button" hidden>規則を理解しました・開始確認へ進む<br /><small>I UNDERSTAND — CONTINUE</small></button>
+        <p class="instruction">この画面を閉じず、先生の指示を待ってください。<br /><small>Keep this page open and wait for your teacher.</small></p>
+      </section>
+
+      <section class="examCard assignmentIntroCard" id="assignmentIntroCard" hidden>
+        <p class="kicker">CLASSROOM PRACTICE / 課題モード</p>
+        <h1>関数練習を始めます。<br /><small>Start the classroom function practice.</small></h1>
+        <div class="waitingIdentity"><strong id="assignment-student"></strong><span id="assignment-student-number"></span><small id="assignment-exam"></small></div>
+        <ul class="assignmentRules">
+          <li><strong>制限時間と全画面の指定はありません。</strong><small>There is no time limit or fullscreen requirement.</small></li>
+          <li><strong>回答はこのページを開いている間だけ保持されます。途中で終了すると入力内容は保存されません。</strong><small>Answers are kept only while this page stays open. Closing it discards unfinished work.</small></li>
+          <li><strong>提出後に点数を確認できます。提出は最大2回です。</strong><small>You can see your score after submission. Each student may submit at most twice.</small></li>
+        </ul>
+        <button id="assignment-start" type="button">課題を開始する<br /><small>START PRACTICE</small></button>
+        <p class="status" id="assignment-start-status" role="alert"></p>
+      </section>
+
+      <section class="examCard terminalEntryCard" id="terminalEntryCard" hidden>
+        <p class="kicker">ATTEMPT STATUS</p>
+        <h1>この答案はすでに提出されています。<br /><small>This attempt has already been submitted.</small></h1>
+        <div class="waitingIdentity"><strong id="terminal-student"></strong><span id="terminal-student-number"></span><small id="terminal-exam"></small></div>
+        <p class="terminalEntryMessage" id="terminalEntryMessage"></p>
+        <p>同じ答案を再び開くことはできません。再度ログインすると教師への入室申請になり、許可後は最初に準備された同じ問題を空の答案と新しい制限時間で開始します。<br /><small>The submitted answer sheet stays locked. Signing in again sends a new admission request. After teacher approval, the original prepared paper opens with blank answers and a new timer.</small></p>
+        <div class="terminalEntryActions"><button class="secondaryAction" id="terminal-back" type="button">別の試験コードを入力<br /><small>ENTER ANOTHER CODE</small></button><button id="terminal-recheck" type="button">受験資格を再確認<br /><small>CHECK AGAIN</small></button></div>
+        <p class="status" id="terminal-status" aria-live="polite">教師の指示を待ってください。 / Wait for your teacher.</p>
+      </section>
+
+      <section class="examCard" id="preflight-card" hidden>
+        <p class="kicker">試験開始前の確認</p>
+        <h1>環境を確認してください。</h1>
+        <p class="intro">試験を開始する前に、ブラウザと全画面モードを確認します。</p>
+        <ul class="checkList" id="preflight-list" aria-live="polite"></ul>
+        <p class="instruction">すべて確認できたら、下のボタンを押してください。</p>
+        <button id="fullscreen-button" type="button">全画面で試験を始める</button>
+        <p class="status" id="fullscreen-state">全画面モード：未確認</p>
+      </section>
+
+      <section class="examCard questionCard" id="questionCard" hidden>
+        <div class="examControlBar">
+          <div class="examStudentIdentity"><small>STUDENT</small><strong id="attempt-student-name"></strong><span id="attempt-student-number"></span></div>
+          <div class="examProgress"><small>QUESTION</small><strong id="question-position">1 / 50</strong></div>
+          <div class="examCountdown"><small>TIME REMAINING</small><time id="attempt-deadline"></time></div>
+          <button class="submitTopButton" id="submit-button" type="button">答案を提出する<br /><small>FINAL SUBMISSION</small></button>
+        </div>
+        <div class="examWorkspaceGrid">
+          <aside class="examLeftRail">
+            <section class="examSideNote examRules"><p class="sideKicker">EXAM RULES</p><h2>試験ルール</h2><ul><li>全画面解除時は試験内容を隠す<br><small>The paper is hidden immediately.</small></li><li>復帰猶予は10秒 → 5秒 → 以降3秒<br><small>Recovery grace: 10s → 5s → 3s thereafter.</small></li><li>時間内に戻らない場合のみ警告を記録<br><small>Only a timeout records a warning.</small></li><li>コピー・貼り付けは禁止<br><small>No copy or paste.</small></li><li>禁止操作3回で答案と残り時間を保存して一時停止<br><small>3 violations pause the saved answer sheet and timer.</small></li><li>再開には教師の許可が必要<br><small>Teacher approval is required to resume.</small></li></ul></section>
+          </aside>
+          <div class="questionMain">
+            <div class="questionHeading"><div><h1 id="question-title">問題 1</h1><span class="functionCountBadge" id="functionCountBadge" hidden></span></div><div class="editTools"><button id="undo-button" type="button" title="元に戻す">↶</button><button id="redo-button" type="button" title="やり直す">↷</button></div></div>
+            <div class="intro markdownContent" id="question-prompt"></div>
+            <p class="questionPromptEn" id="questionPromptEn" lang="en"></p>
+            <p class="tip" id="question-tip"></p>
+            <img class="manualPromptImage" id="manualPromptImage" alt="" hidden />
+            <div class="sheetWorkbench" id="formula-workbench">
+              <div class="sheetWrap"><table class="sheet" id="question-table" aria-label="問題データ"></table></div>
+              <div class="formulaEntry">
+                <div class="formulaBar">
+                  <span class="nameBox" id="answer-cell">D2</span>
+                  <span class="fxMark">fx</span>
+                  <input id="formula-answer" aria-label="数式入力" aria-autocomplete="list" aria-controls="formulaSuggestions" aria-expanded="false" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="=FUNCTION(...)" />
+                </div>
+                <div class="formulaSuggestions" id="formulaSuggestions" role="listbox" aria-label="関数候補 / Function suggestions" hidden></div>
+              </div>
+              <div class="formulaFunctionHelp" id="formulaFunctionHelp" aria-live="polite" hidden><code id="formula-help-syntax"></code><span id="formula-help-ja"></span><small id="formula-help-en"></small></div>
+            </div>
+            <fieldset class="choiceWorkbench" id="choiceWorkbench" hidden><legend>正しい関数を一つ選んでください。</legend><div id="choice-options"></div></fieldset>
+            <section class="manualResponseWorkbench" id="manual-workbench" hidden>
+              <fieldset class="manualChoiceResponse" id="manualChoiceResponse" hidden><legend>回答を選択してください</legend><div id="manual-choice-options"></div></fieldset>
+              <div class="manualFillResponse markdownContent" id="manualFillResponse" hidden></div>
+              <div class="manualShortResponse" id="manualShortResponse" hidden>
+                <label for="manual-short-answer">回答（Markdown対応・添付ファイル不可）</label>
+                <textarea id="manual-short-answer" rows="10" maxlength="20000" spellcheck="true" placeholder="Markdown 形式で回答できます。"></textarea>
+                <div class="manualMarkdownPreview"><span>MARKDOWN PREVIEW</span><div class="markdownContent" id="manual-short-preview"></div></div>
+              </div>
+            </section>
+            <nav class="questionNavigator questionNavigatorDock" aria-label="問題ナビゲーション"><div><strong>問題一覧</strong><span id="answered-count">0 / 50 回答済み</span></div><div class="questionIndex" id="questionIndex"></div></nav>
+            <div class="answerActions"><p class="status" id="save-status" aria-live="polite">保存済み</p><div><button class="secondaryAction" id="previous-button" type="button">← 前の問題</button><button class="secondaryAction" id="next-button" type="button">次の問題 →</button></div></div>
+            <p class="status" id="submission-status" role="status"></p>
+          </div>
+          <aside class="examSideNote examGuide"><p class="sideKicker">QUICK GUIDE</p><h2>操作ガイド</h2><ol id="excel-quick-guide"><li>関数名を入力すると候補と使い方が表示されます<br><small>Type a function name to see suggestions and syntax.</small></li><li>セルをクリック、またはドラッグ<br><small>Click or drag cells.</small></li><li>選択範囲が数式欄に入ります<br><small>The range enters the formula bar.</small></li><li>問題番号で移動できます<br><small>Use question numbers to navigate.</small></li><li>緑の番号は回答済み<br><small>Green means answered.</small></li></ol><ol id="manual-quick-guide" hidden><li>選択・空欄・記述の各形式に回答します<br><small>Answer each question in its displayed format.</small></li><li>記述式は Markdown を使用できます<br><small>Short answers support Markdown text.</small></li><li>答案は入力後に自動保存されます<br><small>Your response is autosaved.</small></li><li>添付ファイルは提出できません<br><small>Student attachments are not accepted.</small></li><li>緑の番号は回答済みです<br><small>Green means answered.</small></li></ol></aside>
+        </div>
+      </section>
+
+      <section class="examCard submittedCard" id="submittedCard" hidden>
+        <div class="submittedMark">✓</div><p class="kicker">SUBMITTED</p><h1>答案を提出しました</h1>
+        <p>提出後は問題や回答を再度見ることはできません。採点結果は先生から案内されます。</p>
+        <dl><dt>提出時刻</dt><dd id="submitted-time"></dd><dt>提出方法</dt><dd id="submitted-type"></dd></dl>
+        <div class="assignmentResult" id="assignmentResult" hidden><span>今回の得点 / YOUR SCORE</span><strong id="assignment-score"></strong><small id="assignment-correct-count"></small></div>
+        <button id="assignment-retry" type="button" hidden>2回目の課題に進む<br /><small>START SECOND SUBMISSION</small></button>
+        <p class="submittedNote">この画面を閉じて、先生の指示を待ってください。</p>
+      </section>
+    </main>
+    <dialog class="violationDialog" id="violationDialog">
+      <div class="violationPanel"><div class="warningSymbol">!</div>
+        <p class="kicker">EXAM POLICY WARNING</p>
+        <h2>禁止操作を検出しました<br /><small>PROHIBITED ACTION DETECTED</small></h2>
+        <p id="violation-message-ja"></p><p class="violationMessageEn" id="violationMessageEn"></p>
+        <p class="violationCount" id="violation-occurred-at"></p>
+        <p class="violationCount" id="violation-countdown" aria-live="assertive"></p>
+        <p class="violationCheatingRule">全画面が解除されると試験内容は直ちに隠れます。復帰猶予は1回目10秒、2回目5秒、3回目以降3秒です。時間内に戻っても、次回の猶予は短くなります。<br /><strong>The paper is hidden immediately. Recovery grace is 10 seconds, then 5 seconds, then 3 seconds thereafter. Each interruption advances the schedule even when recovered in time.</strong></p>
+        <p class="violationZeroRule">禁止操作が3回記録されると、答案と残り時間を保存して一時停止します。再開には教師の許可が必要です。<br /><strong>After 3 recorded violations, the saved answer sheet and timer are paused. Teacher approval is required to resume.</strong></p>
+        <button id="violation-confirm" type="button" disabled>試験に戻る<br /><small>RETURN TO EXAM</small></button>
+      </div>
+    </dialog>
+    <dialog class="submitDialog" id="submitDialog"><p class="kicker">FINAL SUBMISSION</p><h2>答案を提出しますか？<br /><small>Submit your exam?</small></h2><p id="submit-summary"></p><p id="submit-lock-copy">提出後はこの答案を再閲覧・再回答できません。再受験には毎回教師の許可が必要です。<br /><small>After confirmation, this answer sheet is locked. A teacher must approve every new attempt.</small></p><p class="submitError" id="submitError" role="alert" hidden></p><div><button class="secondaryAction" id="submit-cancel" type="button">戻って確認する</button><button id="submit-confirm" type="button">確認して提出</button></div></dialog>
+    <dialog class="submitDialog finalSubmitDialog" id="finalSubmitDialog">
+      <p class="kicker">FINAL CONFIRMATION / 最終確認</p>
+      <h2>本当に答案を提出しますか？<br /><small>Are you absolutely sure you want to submit?</small></h2>
+      <p class="finalSubmitWarning">この操作を行うと、現在の答案は直ちに確定されます。提出後は問題画面へ戻れません。<br /><small>This action immediately locks your current answer sheet. You cannot return to the questions after submission.</small></p>
+      <p class="finalSubmitIdentity"><span>学生番号 / STUDENT NUMBER</span><strong id="final-submit-student-number"></strong></p>
+      <p class="submitError" id="final-submit-error" role="alert" hidden></p>
+      <div><button class="secondaryAction" id="final-submit-cancel" type="button">提出しない<br /><small>DO NOT SUBMIT</small></button><button class="dangerAction" id="final-submit-confirm" type="button" disabled>内容を確認してください<br /><small>REVIEW FIRST</small></button></div>
+    </dialog>
+    <footer class="examFooter">
+      <span class="examCopyright">© 2026 MinorCold_12 · MIT License</span>
+    </footer>
+    <!-- student-entry-react:start -->
+    <script type="module" crossorigin src="/admin/react/assets/studentEntry-DU-j-ZOk.js"></script>
+    <!-- student-entry-react:end -->
+  </body>
+</html>

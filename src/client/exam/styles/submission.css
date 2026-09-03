@@ -1,0 +1,34 @@
+.submittedCard { width: min(100%,620px); text-align: center; }
+.submittedMark { display: grid; width: 58px; height: 58px; margin: 0 auto 18px; place-items: center; border-radius: 50%; color: #fff; background: var(--accent); font-size: 1.6rem; }
+.submittedCard dl { display: grid; grid-template-columns: 1fr 1fr; max-width: 380px; margin: 28px auto; border-top: 1px solid var(--line); text-align: left; }
+.submittedCard dt,.submittedCard dd { margin: 0; border-bottom: 1px solid var(--line); padding: 10px; font-size: .8rem; }
+.submittedCard dt { color: var(--muted); }
+.submittedNote { border: 1px solid #b9d0ca; padding: 13px; color: var(--accent); background: #eef6f4; }
+.assignmentResult { display: grid; gap: 7px; margin: 24px auto; border: 1px solid #84aaa1; padding: 20px; color: var(--accent); background: #eef6f4; }
+.assignmentResult strong { font: 800 2rem ui-monospace,monospace; }
+.assignmentResult small { color: #526963; }
+#assignment-retry { margin: 0 auto 18px; }
+.submitDialog { width: min(92vw,480px); border: 1px solid var(--lineStrong); padding: 28px; box-shadow: 0 24px 80px rgb(20 30 28 / 28%); }
+.submitDialog::backdrop { background: rgb(26 31 34 / 65%); }
+.submitDialog .submitError { border-left: 4px solid var(--danger); color: #8d2f26; background: #fff3f1; padding: 11px 13px; font-weight: 700; line-height: 1.6; }
+.submitDialog > div { display: flex; gap: 8px; margin-top: 22px; }
+.submitDialog > div button { width: 50%; }
+.finalSubmitDialog { border-top: 8px solid var(--danger); }
+.finalSubmitWarning { border: 1px solid #e4b8b2; background: #fff3f1; padding: 14px; line-height: 1.65; }
+.finalSubmitIdentity { display: grid; gap: 4px; border-block: 1px solid var(--line); padding-block: 12px; }
+.finalSubmitIdentity span { color: var(--muted); font-size: .75rem; letter-spacing: .08em; }
+.finalSubmitIdentity strong { font-size: 1.2rem; }
+.dangerAction { background: var(--danger); }
+.checkList { margin: 26px 0; padding: 0; list-style: none; }
+.checkList li { display: flex; justify-content: space-between; gap: 20px; padding: 11px 0; border-top: 1px solid var(--line); font-size: 0.87rem; }
+.checkList strong { font-family: ui-monospace, monospace; font-size: 0.72rem; }
+.checkList .pass { color: #267143; }
+.checkList .check { color: #9a6027; }
+button { width: 100%; min-height: 42px; border: 0; border-radius: 3px; color: #fff; background: var(--accent); font: inherit; font-weight: 700; cursor: pointer; }
+button:hover { background: #174d45; }
+.submitDialog .dangerAction:hover { background: #762d26; }
+button:disabled { opacity: .55; cursor: not-allowed; }
+button:focus-visible { outline: 3px solid #9bc7bd; outline-offset: 2px; }
+.status { margin: 14px 0 0; color: var(--muted); font-size: 0.78rem; text-align: center; }
+.examFooter { display: grid; min-height: 50px; place-items: center; border-top: 1px solid var(--line); padding: 12px 20px; color: var(--muted); background: #fff; font-family: ui-monospace, monospace; font-size: 0.64rem; letter-spacing: 0.05em; text-align: center; }
+.examCopyright { color: #7a848d; font-family: "Noto Sans", "Noto Sans JP", sans-serif; font-size: .92em; letter-spacing: .01em; }

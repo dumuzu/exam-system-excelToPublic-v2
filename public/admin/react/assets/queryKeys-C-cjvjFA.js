@@ -1,0 +1,1 @@
+var e={platform:[`admin`,`system`,`exams`],subject:e=>[`admin`,`subjects`,e,`exams`],room:e=>[`admin`,`exams`,e,`room`],roomFailures:e=>[`admin`,`exams`,e,`termination-failures`]};export{e as t};

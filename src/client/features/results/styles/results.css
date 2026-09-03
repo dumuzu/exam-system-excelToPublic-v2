@@ -1,0 +1,32 @@
+.resultMetricHeader,
+.resultMetricCell,
+.resultSubmittedCell,
+.resultStatusCell,
+.resultActionCell {
+  text-align: center !important;
+}
+
+.resultMetricCell,
+.resultSubmittedCell {
+  white-space: nowrap;
+}
+
+.resultStatusCell .dataTableCellValue,
+.resultActionCell .dataTableCellValue {
+  display: inline-flex;
+  justify-content: center;
+}
+
+@media (max-width: 760px) {
+  .resultMetricCell,
+  .resultSubmittedCell,
+  .resultStatusCell,
+  .resultActionCell {
+    text-align: left !important;
+  }
+
+  .resultStatusCell .dataTableCellValue,
+  .resultActionCell .dataTableCellValue {
+    display: block;
+  }
+}

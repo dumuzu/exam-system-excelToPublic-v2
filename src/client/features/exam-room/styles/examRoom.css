@@ -1,0 +1,573 @@
+.examRoomFlow {
+  display: grid;
+  min-width: 0;
+  gap: 16px;
+  padding-top: 18px;
+}
+
+.examRoomHeader {
+  align-items: flex-start;
+}
+
+.examRoomHeading {
+  display: grid !important;
+  min-width: 0;
+  gap: 3px !important;
+}
+
+.examRoomHeading h1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.examRoomHeading span {
+  overflow: hidden;
+  max-width: min(760px, 70vw);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.examRoomHeaderActions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.examRoomSyncStatus {
+  color: var(--foregroundSubtle);
+  font-family: var(--fontNumeric);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.examRoomCode {
+  display: inline-flex;
+  min-height: var(--controlHeight);
+  padding: 8px 12px;
+  border: 1px solid var(--borderStrong);
+  align-items: center;
+  background: color-mix(in oklch, var(--primary) 5%, var(--surfaceRaised));
+  color: var(--primary);
+  font-family: var(--fontNumeric);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.roomSummaryGrid {
+  display: grid;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.roomSummaryItem {
+  display: grid;
+  min-height: 74px;
+  padding: 12px 14px;
+  border-left: 1px solid var(--border);
+  align-content: center;
+  gap: 3px;
+}
+
+.roomSummaryItem:first-child {
+  border-left: 0;
+}
+
+.roomSummaryItem strong {
+  font-family: var(--fontNumeric);
+  font-size: 1.45rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.roomSummaryItem span {
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+}
+
+.roomSummaryItem[data-tone="success"] {
+  color: var(--success);
+}
+
+.roomSummaryItem[data-tone="warning"] {
+  color: var(--warning);
+}
+
+.roomSummaryItem[data-tone="danger"] {
+  color: var(--danger);
+}
+
+.roomSummaryItem[data-tone="info"] {
+  color: var(--info);
+}
+
+.roomSummaryItem[data-tone="neutral"] {
+  color: var(--foreground);
+}
+
+.roomOperationsPanel,
+.terminationFailurePanel {
+  min-width: 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.roomToolbar {
+  display: grid;
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  align-items: end;
+  background: var(--surface);
+  gap: 12px;
+  grid-template-columns: minmax(240px, 1fr) minmax(220px, 0.8fr) auto auto auto;
+}
+
+.roomToolbarNote {
+  display: grid;
+  align-self: center;
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+  gap: 2px;
+}
+
+.roomToolbarNote strong {
+  color: var(--foreground);
+  font-size: 0.76rem;
+}
+
+.roomFilterTabs {
+  display: flex;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  gap: 4px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.roomFilterTab {
+  min-height: 36px;
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--radiusControl);
+  background: transparent;
+  color: var(--foregroundMuted);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.roomFilterTab:hover,
+.roomFilterTab[aria-selected="true"] {
+  border-color: var(--borderStrong);
+  background: var(--surfaceInset);
+  color: var(--foreground);
+}
+
+.roomTableViewport {
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-gutter: stable;
+  box-shadow: inset -12px 0 12px -14px var(--foregroundSubtle);
+}
+
+.roomAttendanceTable {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  background: var(--surface);
+  font-size: 0.78rem;
+}
+
+.roomAttendanceTable th,
+.roomAttendanceTable td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.roomAttendanceTable th {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  background: var(--surfaceInset);
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.roomAttendanceTable th:nth-child(n + 2) {
+  text-align: center;
+}
+
+.roomAttendanceTable td:nth-child(n + 2) {
+  text-align: center;
+}
+
+.roomAttendanceTable tbody tr:hover {
+  background: var(--surfaceRaised);
+}
+
+.roomMobileCellLabel {
+  display: none;
+}
+
+.roomStudentIdentity {
+  display: grid;
+  min-width: 210px;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+}
+
+.roomSelectionControl,
+.roomSelectionPlaceholder {
+  display: inline-grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+}
+
+.roomSelectionControl {
+  cursor: pointer;
+}
+
+.roomSelectionControl input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--primary);
+}
+
+.roomStudentIdentityText {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.roomStudentIdentityText strong,
+.roomStudentIdentityText small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.roomStudentIdentityText strong,
+.roomAttemptCount,
+.roomTimeValue {
+  font-family: var(--fontNumeric);
+  font-variant-numeric: tabular-nums;
+}
+
+.roomStudentIdentityText small,
+.roomCellDetail {
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+}
+
+.roomStatusCell,
+.roomTimeCell,
+.roomSubmittedCell,
+.roomAttemptCell {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+}
+
+.roomStatusBadge[data-status="waiting_approval"],
+.roomStatusBadge[data-status="assignment_second_ready"],
+.roomStatusBadge[data-status="assignment_submitted_once"] {
+  border-color: color-mix(in oklch, var(--warning) 38%, var(--border));
+  color: var(--warning);
+}
+
+.roomStatusBadge[data-status="in_progress"],
+.roomStatusBadge[data-status="assignment_in_progress"],
+.roomStatusBadge[data-status="assignment_completed_twice"] {
+  border-color: color-mix(in oklch, var(--success) 38%, var(--border));
+  color: var(--success);
+}
+
+.roomStatusBadge[data-status="disconnected"],
+.roomStatusBadge[data-status="policy_suspended"],
+.roomStatusBadge[data-status="policy_submitted"],
+.roomStatusBadge[data-status="expired"] {
+  border-color: color-mix(in oklch, var(--danger) 38%, var(--border));
+  color: var(--danger);
+}
+
+.roomStatusBadge[data-status="admitted"],
+.roomStatusBadge[data-status="resume_ready"],
+.roomStatusBadge[data-status="teacher_submitted"] {
+  border-color: color-mix(in oklch, var(--info) 38%, var(--border));
+  color: var(--info);
+}
+
+.roomActionGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.roomActionButton {
+  min-height: 34px;
+  padding: 5px 8px;
+  font-size: 0.75rem;
+}
+
+.roomEmptyState {
+  display: grid;
+  justify-items: center;
+  padding: 32px 20px;
+  color: var(--foregroundMuted);
+  gap: 12px;
+  text-align: center;
+}
+
+.roomEmptyState p {
+  margin: 0;
+}
+
+.terminationFailurePanel {
+  border-color: color-mix(in oklch, var(--danger) 40%, var(--border));
+}
+
+.terminationFailureHeader {
+  display: grid;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  gap: 3px;
+}
+
+.terminationFailureHeader h2,
+.terminationFailureHeader p {
+  margin: 0;
+}
+
+.terminationFailureHeader h2 {
+  font-size: 1rem;
+}
+
+.terminationFailureHeader p {
+  color: var(--foregroundMuted);
+  font-size: 0.76rem;
+}
+
+.terminationFailureList {
+  display: grid;
+}
+
+.terminationFailureRow {
+  display: grid;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  gap: 12px;
+  grid-template-columns: minmax(150px, 0.75fr) minmax(240px, 1.4fr) minmax(170px, 0.8fr) auto;
+}
+
+.terminationFailureRow:last-child {
+  border-bottom: 0;
+}
+
+.terminationFailureIdentity,
+.terminationFailureDetail,
+.terminationFailureAudit {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.terminationFailureDetail span {
+  overflow-wrap: anywhere;
+}
+
+.terminationFailureDetail code {
+  width: fit-content;
+  color: var(--danger);
+  font-size: 0.75rem;
+}
+
+.terminationFailureAudit,
+.terminationFailureIdentity small {
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+}
+
+.roomActionDialogObject {
+  font-family: var(--fontNumeric);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+  .roomSummaryGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .roomSummaryItem:nth-child(4) {
+    border-left: 0;
+  }
+
+  .roomToolbar {
+    grid-template-columns: minmax(240px, 1fr) minmax(220px, 0.8fr);
+  }
+
+  .roomToolbar .uiButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 48rem) {
+  .examRoomHeader {
+    display: grid;
+  }
+
+  .examRoomHeading h1,
+  .examRoomHeading span {
+    max-width: none;
+    overflow: visible;
+    overflow-wrap: anywhere;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .examRoomHeaderActions {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .roomToolbar,
+  .terminationFailureRow {
+    grid-template-columns: 1fr;
+  }
+
+  .roomSummaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .roomSummaryItem:nth-child(3),
+  .roomSummaryItem:nth-child(5) {
+    border-left: 0;
+  }
+
+  .roomSummaryItem:nth-child(4) {
+    border-left: 1px solid var(--border);
+  }
+
+  .roomAttendanceTable {
+    display: block;
+    min-width: 0;
+    background: transparent;
+  }
+
+  .roomTableViewport {
+    overflow: visible;
+    box-shadow: none;
+  }
+
+  .roomAttendanceTable thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .roomAttendanceTable tbody {
+    display: grid;
+    gap: var(--space3);
+  }
+
+  .roomAttendanceTable tbody tr {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radiusControl);
+    background: var(--surface);
+  }
+
+  .roomAttendanceTable td {
+    position: static;
+    display: grid;
+    min-width: 0;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    background: transparent;
+    box-shadow: none;
+    grid-template-columns: minmax(6.5rem, 34%) minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space3);
+    text-align: left !important;
+  }
+
+  .roomAttendanceTable td:last-child {
+    border-bottom: 0;
+  }
+
+  .roomMobileCellLabel {
+    display: block;
+    color: var(--foregroundSubtle);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .roomStudentIdentity {
+    min-width: 0;
+  }
+
+  .roomStudentIdentityText strong,
+  .roomStudentIdentityText small {
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .roomActionGroup {
+    justify-content: flex-start;
+  }
+
+  .roomStatusCell,
+  .roomTimeCell,
+  .roomSubmittedCell,
+  .roomAttemptCell {
+    justify-items: start;
+  }
+
+  .roomFilterTab,
+  .roomActionButton {
+    min-height: 44px;
+  }
+
+  .roomSelectionControl,
+  .roomSelectionPlaceholder {
+    width: 44px;
+    height: 44px;
+  }
+
+  .roomSelectionControl input {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .examRoomHeaderActions {
+    display: grid;
+  }
+
+  .examRoomCode,
+  .examRoomSyncStatus,
+  .examRoomHeaderActions .uiButton {
+    width: 100%;
+  }
+}

@@ -1,0 +1,433 @@
+.routeHeaderActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.exportLink {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.resultPageFlow {
+  display: grid;
+  min-width: 0;
+  gap: 16px;
+  padding-top: 18px;
+}
+
+.resultPageFlow > * {
+  min-width: 0;
+}
+
+.resultControlBar {
+  display: grid;
+  padding: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  grid-template-columns: minmax(240px, 1fr) minmax(220px, 0.8fr) minmax(280px, 1fr);
+  align-items: end;
+  gap: 16px;
+}
+
+.resultMetricBand {
+  display: grid;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.resultMetricBand > div {
+  display: grid;
+  min-height: 92px;
+  padding: 16px 18px;
+  align-content: space-between;
+  border-right: 1px solid var(--border);
+}
+
+.resultMetricBand > div:last-child {
+  border-right: 0;
+}
+
+.resultMetricBand span,
+.scoreDistribution header span,
+.resultTablePanel > header span,
+.auditLogPanel > header span {
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+}
+
+.resultMetricBand strong {
+  font-family: var(--fontNumeric);
+  font-size: 1.55rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.scoreDistribution,
+.resultTablePanel,
+.auditLogPanel {
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.scoreDistribution > header,
+.resultTablePanel > header,
+.auditLogPanel > header {
+  display: flex;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.scoreDistribution h2,
+.resultTablePanel h2,
+.auditLogPanel h2 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.scoreDistribution > div {
+  display: grid;
+  padding: 14px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.scoreDistributionRow {
+  display: grid;
+  gap: 6px;
+}
+
+.scoreDistributionRow > span,
+.scoreDistributionRow > strong {
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.scoreDistributionRow > strong {
+  color: var(--foreground);
+}
+
+.scoreDistributionRow progress {
+  width: 100%;
+  height: 8px;
+  border: 0;
+  background: var(--surfaceInset);
+  appearance: none;
+}
+
+.scoreDistributionRow progress::-webkit-progress-bar {
+  background: var(--surfaceInset);
+}
+
+.scoreDistributionRow progress::-webkit-progress-value,
+.scoreDistributionRow progress::-moz-progress-bar {
+  background: var(--primary);
+}
+
+.resultTablePanel .dataTable {
+  min-width: 900px;
+}
+
+.studentIdentity {
+  display: grid;
+  gap: 2px;
+}
+
+.studentIdentity code {
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+}
+
+.auditLogList {
+  display: grid;
+}
+
+.auditLogRow {
+  display: grid;
+  min-height: 68px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  grid-template-columns: minmax(180px, 0.8fr) minmax(220px, 1fr) minmax(260px, 1.1fr);
+  align-items: center;
+  gap: 16px;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 68px;
+}
+
+.auditLogRow:last-child {
+  border-bottom: 0;
+}
+
+.auditEvent,
+.auditTiming {
+  display: grid;
+  justify-items: start;
+  gap: 4px;
+}
+
+.auditEvent small,
+.auditTiming small,
+.auditTiming time {
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+}
+
+.resultReviewDialog {
+  width: min(1040px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 1px solid var(--borderStrong);
+  border-radius: var(--radiusPanel);
+  background: var(--surfaceRaised);
+  color: var(--foreground);
+  box-shadow: var(--shadowDialog);
+  overscroll-behavior: contain;
+}
+
+.resultReviewDialog::backdrop {
+  background: color-mix(in oklch, var(--sidebar) 62%, transparent);
+}
+
+.resultReviewHeader {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  min-height: 70px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surfaceRaised);
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.resultReviewHeader h2,
+.resultReviewHeader p {
+  margin: 0;
+}
+
+.resultReviewHeader p {
+  margin-top: 3px;
+  color: var(--foregroundMuted);
+  font-size: 0.78rem;
+}
+
+.resultReviewHeader .uiButton {
+  min-width: 38px;
+  padding: 4px;
+  font-size: 1.35rem;
+}
+
+.resultReviewBody {
+  min-height: 320px;
+  padding: 18px;
+}
+
+.reviewQuestionList {
+  display: grid;
+  gap: 0;
+}
+
+.reviewQuestionCard {
+  display: grid;
+  padding: 18px 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  background: transparent;
+  gap: 14px;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 420px;
+}
+
+.reviewQuestionCard:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.reviewQuestionCard > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.reviewQuestionCard > header > span {
+  color: var(--foregroundMuted);
+  font-family: var(--fontNumeric);
+  font-size: 0.75rem;
+}
+
+.reviewQuestionCard > header h3 {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.resultReviewBody > .inlineFeedback {
+  margin-bottom: 14px;
+}
+
+.markdownContent {
+  overflow-wrap: anywhere;
+  line-height: 1.7;
+}
+
+.markdownContent > :last-child {
+  margin-bottom: 0;
+}
+
+.reviewPrompt {
+  padding: 12px;
+  border-block: 1px solid var(--borderStrong);
+  background: var(--surfaceInset);
+}
+
+.reviewComparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-block: 1px solid var(--border);
+  gap: 0;
+}
+
+.reviewComparison > section {
+  min-width: 0;
+  padding: 12px;
+  border: 0;
+  background: transparent;
+}
+
+.reviewComparison > section + section {
+  border-left: 1px solid var(--border);
+}
+
+.reviewComparison h3 {
+  margin-bottom: 8px;
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+}
+
+.reviewValue {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.reviewAnswerChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.reviewAnswerChips code,
+.reviewAnswerRow code {
+  padding: 3px 6px;
+  border: 1px solid var(--border);
+  background: var(--surfaceInset);
+}
+
+.reviewAnswerRow {
+  display: grid;
+  padding: 5px 0;
+  grid-template-columns: minmax(70px, auto) 1fr;
+  align-items: start;
+  gap: 8px;
+}
+
+.questionScoreSummary {
+  display: flex;
+  margin: 0;
+  gap: 20px;
+}
+
+.questionScoreSummary > div {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.questionScoreSummary dt {
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+}
+
+.questionScoreSummary dd {
+  margin: 0;
+  font-family: var(--fontNumeric);
+  font-size: 0.8rem;
+}
+
+.gradeAdjustmentForm {
+  display: grid;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  grid-template-columns: minmax(150px, 0.35fr) minmax(260px, 1fr) auto;
+  align-items: end;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .resultControlBar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resultControlBar .filterTabs {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+
+  .auditLogRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .auditTiming {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 680px) {
+  .routeHeaderActions {
+    flex-wrap: wrap;
+  }
+
+  .resultControlBar,
+  .resultMetricBand,
+  .scoreDistribution > div,
+  .reviewComparison,
+  .gradeAdjustmentForm {
+    grid-template-columns: 1fr;
+  }
+
+  .reviewComparison > section + section {
+    border-top: 1px solid var(--border);
+    border-left: 0;
+  }
+
+  .resultControlBar .filterTabs {
+    grid-column: auto;
+    overflow-x: auto;
+  }
+
+  .resultMetricBand > div {
+    min-height: 72px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .resultMetricBand > div:last-child {
+    border-bottom: 0;
+  }
+
+  .auditLogRow {
+    grid-template-columns: 1fr;
+  }
+
+  .auditTiming {
+    grid-column: auto;
+  }
+}

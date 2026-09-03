@@ -1,0 +1,32 @@
+.adminToast {
+  border: 1px solid var(--borderStrong) !important;
+  border-radius: var(--radiusControl) !important;
+  background: var(--surfaceRaised) !important;
+  color: var(--foreground) !important;
+  box-shadow: var(--shadowDialog) !important;
+  font-family: var(--fontUi) !important;
+}
+
+.adminToastSuccess {
+  border-color: color-mix(in oklch, var(--success) 48%, var(--border)) !important;
+}
+
+.adminToastError {
+  border-color: color-mix(in oklch, var(--danger) 48%, var(--border)) !important;
+}
+
+.adminToastTitle {
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+}
+
+.adminToastDescription {
+  color: var(--foregroundMuted) !important;
+  font-size: 0.76rem !important;
+}
+
+.adminToastClose {
+  border-color: var(--borderStrong) !important;
+  background: var(--surfaceRaised) !important;
+  color: var(--foreground) !important;
+}

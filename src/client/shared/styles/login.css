@@ -1,0 +1,35 @@
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 */
+/* Hallmark · genre: modern-minimal · tone: austere · anchor hue: deep-teal · macrostructure: Index-First · motion: none · nav: none · footer: none */
+.loginLayout {
+  display: grid;
+  min-height: 100svh;
+  padding: var(--space4);
+  place-items: center;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.loginForm {
+  display: grid;
+  width: min(100%, 320px);
+  gap: var(--space4);
+}
+
+.loginFields {
+  display: grid;
+  gap: var(--space3);
+}
+
+.loginForm .fieldGroup {
+  gap: var(--space2);
+}
+
+.loginForm .fieldMessage:empty {
+  display: none;
+}
+
+.loginSubmit {
+  width: 100%;
+  min-height: 44px;
+  white-space: nowrap;
+}

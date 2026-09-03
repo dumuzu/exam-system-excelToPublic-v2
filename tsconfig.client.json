@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "rootDir": "src/client",
+    "outDir": "public",
+    "declaration": false,
+    "noEmitOnError": true,
+    "sourceMap": false
+  },
+  "include": [
+    "src/client/exam/**/*.ts",
+    "src/client/shared/safe-markdown.ts"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "exam-system-excel-to-public-v2",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/server/server.ts",
+    "test": "node --test",
+    "typecheck": "tsc --project tsconfig.json && tsc --project tsconfig.client.json --noEmit && tsc --project tsconfig.react.json",
+    "prebuild:client": "node scripts/build-client.ts && node scripts/build-styles.ts",
+    "build:client": "tsc --project tsconfig.client.json && vite build",
+    "dev:react": "vite build --watch",
+    "auth:migrate-legacy": "node --env-file-if-exists=.env scripts/migrate-legacy-admin-accounts.ts",
+    "check:generated": "node --check public/shared/safe-markdown.js && node --check public/exam/browser-compatibility.js && node --check public/exam/exam-behavior-guard.js && node --check public/exam/formula-assistant.js && node --check public/exam/fullscreen-compatibility.js && node --check public/exam/japanese-readings.js && node --check public/exam/submission-request.js && node --check public/exam/student-entry-bridge.js && node --check public/exam/exam.js",
+    "check:react-build": "node scripts/check-react-client-build.ts",
+    "check:engineering": "node scripts/check-engineering-conventions.ts",
+    "check:public-release": "node scripts/check-public-release.ts",
+    "check": "npm run typecheck && npm run build:client && npm run check:generated && npm run check:react-build && npm run check:engineering && npm run check:public-release",
+    "db:migrate": "node --env-file-if-exists=.env scripts/apply-database-migrations.ts",
+    "db:audit": "node --env-file-if-exists=.env scripts/audit-postgres-stability.ts",
+    "auth:bootstrap": "node --env-file-if-exists=.env scripts/bootstrap-super-admin.ts",
+    "certify:multi-subject-load": "node --env-file-if-exists=.env scripts/certify-postgres-multi-subject-load.ts"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "dependencies": {
+    "@fontsource-variable/noto-sans-jp": "^5.3.0",
+    "@tanstack/react-query": "^5.102.8",
+    "@tanstack/react-router": "1.168.18",
+    "@tanstack/react-table": "^9.1.2",
+    "decimal.js": "^10.6.0",
+    "pg": "^8.22.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "sonner": "^2.0.8",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
+    "zod": "^4.5.4",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.3",
+    "@types/pg": "8.23.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@vitejs/plugin-react": "^6.1.1",
+    "typescript": "5.9.3",
+    "vite": "^8.2.2"
+  }
+}

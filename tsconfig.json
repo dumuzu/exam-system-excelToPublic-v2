@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2024",
+    "lib": [
+      "ES2024",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "types": [
+      "node"
+    ],
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "api/**/*",
+    "scripts/**/*",
+    "vite.config.ts",
+    "src/assessment-types/**/*",
+    "src/core/**/*",
+    "src/platform/**/*",
+    "src/types/**/*",
+    "src/server/**/*",
+    "test-support/**/*",
+    "test/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "public"
+  ]
+}

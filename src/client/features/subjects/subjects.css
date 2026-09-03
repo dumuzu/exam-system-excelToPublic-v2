@@ -1,0 +1,294 @@
+.subjectPageFlow {
+  display: grid;
+  min-width: 0;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.subjectDirectory {
+  min-width: 0;
+  border-top: 2px solid var(--primary);
+  background: var(--surface);
+}
+
+.subjectDirectoryHeader {
+  display: flex;
+  min-height: 54px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.subjectDirectoryHeader h2 {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.subjectDirectoryHeader span {
+  color: var(--foregroundMuted);
+  font-family: var(--fontNumeric);
+  font-size: 0.75rem;
+}
+
+.subjectDirectory .dataTable {
+  min-width: 920px;
+}
+
+.subjectDirectory .dataTable th,
+.subjectDirectory .dataTable td,
+.subjectStaffCell,
+.subjectActionCell {
+  text-align: left;
+}
+
+.subjectIdentity {
+  display: grid;
+  min-width: 180px;
+  gap: 3px;
+}
+
+.subjectIdentity strong {
+  font-size: 0.84rem;
+}
+
+.subjectIdentity code {
+  color: var(--foregroundSubtle);
+  font-size: 0.72rem;
+}
+
+.subjectStaffCell {
+  font-family: var(--fontNumeric);
+  font-variant-numeric: tabular-nums;
+}
+
+.subjectCapabilityList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.subjectRowActions {
+  display: flex;
+  min-width: 150px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.subjectRowActions .uiButton {
+  min-height: 34px;
+  padding: 6px 9px;
+  font-size: 0.75rem;
+}
+
+.subjectProtectedLabel {
+  padding: 5px 8px;
+  color: var(--foregroundSubtle);
+  font-size: 0.72rem;
+}
+
+.subjectEditorDialog {
+  width: min(760px, calc(100vw - 32px));
+  max-height: min(840px, calc(100vh - 32px));
+  padding: 0;
+  overflow-y: auto;
+  border: 1px solid var(--borderStrong);
+  border-radius: var(--radiusPanel);
+  background: var(--surfaceRaised);
+  color: var(--foreground);
+  box-shadow: var(--shadowDialog);
+}
+
+.subjectEditorDialog::backdrop {
+  background: color-mix(in oklch, var(--sidebar) 62%, transparent);
+}
+
+.subjectEditorForm {
+  display: grid;
+}
+
+.subjectEditorHeader {
+  padding: 24px 24px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.subjectEditorHeader > code {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.subjectEditorHeader h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.subjectEditorHeader p {
+  margin: 0;
+  color: var(--foregroundMuted);
+  line-height: 1.65;
+}
+
+.subjectEditorFields {
+  display: grid;
+  padding: 22px 24px;
+  gap: 16px;
+}
+
+.subjectEditorFieldPair,
+.subjectEditorNameGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.subjectEditorFieldPair {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.subjectEditorNameGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.subjectImmutableFields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  gap: 8px 20px;
+}
+
+.subjectImmutableFields span {
+  display: grid;
+  gap: 4px;
+}
+
+.subjectImmutableFields small,
+.subjectImmutableFields p {
+  color: var(--foregroundSubtle);
+  font-size: 0.72rem;
+}
+
+.subjectCapabilityFieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.subjectCapabilityFieldset > legend {
+  margin-bottom: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.subjectCapabilityFieldset > p {
+  margin: 0 0 10px;
+  color: var(--foregroundSubtle);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.subjectCapabilityOptions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.subjectCapabilityOption {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  min-height: 74px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusControl);
+  background: var(--surface);
+  align-items: start;
+  gap: 9px;
+  cursor: pointer;
+}
+
+.subjectCapabilityOption:has(input:checked) {
+  border-color: var(--primary);
+  background: color-mix(in oklch, var(--primary) 6%, var(--surface));
+}
+
+.subjectCapabilityOption input {
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0;
+  accent-color: var(--primary);
+}
+
+.subjectCapabilityOption span {
+  display: grid;
+  gap: 4px;
+}
+
+.subjectCapabilityOption strong {
+  font-size: 0.8rem;
+}
+
+.subjectCapabilityOption small {
+  color: var(--foregroundMuted);
+  font-size: 0.71rem;
+  line-height: 1.45;
+}
+
+.subjectImmutableFields p {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
+}
+
+.subjectEditorForm > .inlineFeedback {
+  margin: 0 24px 16px;
+}
+
+.subjectEditorActions {
+  display: flex;
+  padding: 14px 24px;
+  border-top: 1px solid var(--border);
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.subjectStatusConfirmation {
+  display: grid;
+  margin-top: 18px;
+  gap: 10px;
+}
+
+.subjectStatusConfirmation .inlineFeedback {
+  margin: 0;
+}
+
+@media (max-width: 980px) {
+  .subjectRouteHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .subjectRouteHeader .routeHeaderActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 48rem) {
+  .subjectEditorFieldPair,
+  .subjectEditorNameGrid,
+  .subjectImmutableFields,
+  .subjectCapabilityOptions {
+    grid-template-columns: 1fr;
+  }
+
+  .subjectImmutableFields p {
+    grid-column: auto;
+  }
+}

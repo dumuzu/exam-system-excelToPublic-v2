@@ -1,0 +1,191 @@
+.tableViewport {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusPanel);
+  background: var(--surface);
+  overscroll-behavior-inline: contain;
+  scrollbar-gutter: stable;
+}
+
+.tableViewport:focus-within {
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--focusRing) 28%, transparent);
+}
+
+.dataTable {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  background: var(--surface);
+  font-size: 0.875rem;
+}
+
+.dataTable th,
+.dataTable td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.dataTable th {
+  color: var(--foregroundSubtle);
+  background: var(--surfaceInset);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.dataTable tbody tr:hover {
+  background: var(--surfaceInset);
+}
+
+.dataTable tbody tr:focus-within {
+  background: color-mix(in oklch, var(--primary) 7%, var(--surface));
+  box-shadow: inset 0 0 0 2px color-mix(in oklch, var(--focusRing) 58%, transparent);
+}
+
+.dataTable td:first-child {
+  min-width: 220px;
+}
+
+.dataTable td strong,
+.dataTable td code {
+  display: block;
+}
+
+.dataTableMobileLabel {
+  display: none;
+}
+
+.dataTableCellValue {
+  display: contents;
+}
+
+.dataTable td code {
+  margin-top: 2px;
+  color: var(--foregroundSubtle);
+  font-size: 0.78rem;
+}
+
+.numericCell {
+  text-align: right !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.tableLink {
+  display: grid;
+  width: var(--controlHeight);
+  height: var(--controlHeight);
+  border: 1px solid var(--border);
+  border-radius: var(--radiusControl);
+  place-items: center;
+  text-decoration: none;
+}
+
+.tableLink:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.paginationBar {
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.paginationBar > span {
+  min-width: 72px;
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+@media (max-width: 48rem) {
+  .tableViewportStacked {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .tableViewportStacked:focus-within {
+    box-shadow: none;
+  }
+
+  .tableViewportStacked .dataTable[data-mobile-layout="stacked"] {
+    display: block;
+    min-width: 0 !important;
+    background: transparent;
+  }
+
+  .tableViewportStacked .dataTable[data-mobile-layout="stacked"] thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .tableViewportStacked .dataTable[data-mobile-layout="stacked"] tbody {
+    display: grid;
+    gap: var(--space3);
+  }
+
+  .tableViewportStacked .dataTable[data-mobile-layout="stacked"] tbody tr {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radiusControl);
+    background: var(--surface);
+  }
+
+  .tableViewportStacked .dataTable[data-mobile-layout="stacked"] td {
+    position: static !important;
+    display: grid;
+    min-width: 0 !important;
+    padding: 10px 12px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    border-left: 0;
+    background: transparent;
+    box-shadow: none;
+    grid-template-columns: minmax(6.5rem, 34%) minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space3);
+    text-align: left !important;
+  }
+
+  .tableViewportStacked .dataTable[data-mobile-layout="stacked"] td:last-child {
+    border-bottom: 0;
+  }
+
+  .tableViewportStacked .dataTable[data-mobile-layout="stacked"] tbody tr:hover,
+  .tableViewportStacked .dataTable[data-mobile-layout="stacked"] tbody tr:focus-within {
+    background: var(--surfaceRaised);
+  }
+
+  .dataTableMobileLabel {
+    display: block;
+    color: var(--foregroundSubtle);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .dataTableCellValue {
+    display: block;
+    min-width: 0;
+  }
+
+  .numericCell .dataTableCellValue {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+}

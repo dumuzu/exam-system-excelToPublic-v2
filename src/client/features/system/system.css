@@ -1,0 +1,244 @@
+.systemRouteHeader p {
+  max-width: 720px;
+  margin: 6px 0 0;
+  color: var(--foregroundMuted);
+}
+
+.systemRouteHeader > div,
+.systemPageFlow {
+  min-width: 0;
+}
+
+.systemPageFlow {
+  display: grid;
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.systemPageFlow > * {
+  min-width: 0;
+}
+
+.systemMetricStrip {
+  display: grid;
+  margin: 0;
+  border: 1px solid var(--border);
+  background: var(--border);
+  gap: 1px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.systemMetricStrip > div {
+  display: grid;
+  min-height: 96px;
+  padding: 16px 18px;
+  align-content: space-between;
+  background: var(--surfaceRaised);
+}
+
+.systemMetricStrip dt {
+  color: var(--foregroundMuted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.systemMetricStrip dd {
+  margin: 0;
+  font-family: var(--fontNumeric);
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.systemActions,
+.systemDataSection {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surfaceRaised);
+}
+
+.systemActions > header,
+.systemDataSection > header {
+  display: flex;
+  min-height: 54px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.systemActions h2,
+.systemDataSection h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.systemDataSection > header span {
+  display: inline-flex;
+  align-items: center;
+  color: var(--foregroundMuted);
+  gap: 6px;
+  font-family: var(--fontNumeric);
+  font-size: 0.75rem;
+}
+
+.systemActionRow {
+  display: grid;
+  min-height: 64px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  align-items: center;
+  color: inherit;
+  gap: 8px 18px;
+  grid-template-columns: minmax(170px, 0.45fr) minmax(260px, 1fr) auto;
+  text-decoration: none;
+}
+
+.systemActionRow:first-child {
+  border-top: 0;
+}
+
+.systemActionRow:hover {
+  background: var(--surface);
+}
+
+.systemActionRow strong {
+  font-size: 0.86rem;
+}
+
+.systemActionRow span {
+  color: var(--foregroundMuted);
+  font-size: 0.78rem;
+}
+
+.systemSubjectIdentity {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.systemSubjectIdentity strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.systemSubjectIdentity code {
+  color: var(--foregroundSubtle);
+  font-size: 0.7rem;
+}
+
+.systemCountCell {
+  text-align: left !important;
+  font-family: var(--fontNumeric);
+  font-variant-numeric: tabular-nums;
+}
+
+.systemRecentList {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.systemRecentRow {
+  display: grid;
+  min-height: 68px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  align-items: center;
+  gap: 12px;
+  grid-template-areas: "identity status counts time";
+  grid-template-columns: minmax(220px, 1fr) auto minmax(170px, 0.5fr) minmax(140px, auto);
+}
+
+.systemRecentRow:first-child {
+  border-top: 0;
+}
+
+.systemRecentIdentity {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+  grid-area: identity;
+}
+
+.systemRecentIdentity h3 {
+  overflow: hidden;
+  margin: 0;
+  font-size: 0.84rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.systemRecentStatus {
+  grid-area: status;
+}
+
+.systemRecentCounts {
+  grid-area: counts;
+}
+
+.systemRecentTime {
+  grid-area: time;
+}
+
+.systemRecentIdentity span,
+.systemRecentCounts,
+.systemRecentRow time {
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .systemRecentRow {
+    grid-template-areas:
+      "identity status"
+      "counts time";
+    grid-template-columns: minmax(210px, 1fr) auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .systemRouteHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .systemRouteHeader > div {
+    display: grid;
+    gap: 4px;
+  }
+
+  .systemRouteHeader .uiButton {
+    align-self: flex-start;
+  }
+
+  .systemMetricStrip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .systemActionRow {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .systemActionRow > span:nth-child(2) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .systemRecentRow {
+    align-items: start;
+    grid-template-areas:
+      "identity status"
+      "counts counts"
+      "time time";
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .systemDataSection .dataTable th:last-child,
+  .systemDataSection .dataTable td:last-child {
+    position: static;
+    box-shadow: none;
+  }
+}

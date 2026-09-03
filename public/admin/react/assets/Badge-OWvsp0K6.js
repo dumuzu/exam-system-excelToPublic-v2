@@ -1,0 +1,1 @@
+import{N as e}from"./mutation-ydscdWll.js";var t=e();function n({children:e,tone:n=`neutral`}){return(0,t.jsx)(`span`,{className:`uiBadge`,"data-tone":n,children:e})}export{n as t};

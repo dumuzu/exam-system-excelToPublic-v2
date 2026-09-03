@@ -1,0 +1,976 @@
+.authoringRouteHeader {
+  margin-bottom: 20px;
+}
+
+.authoringRouteHeader h1 {
+  margin: 0;
+}
+
+.authoringWorkspaceGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.62fr);
+  align-items: start;
+  gap: 20px;
+}
+
+.authoringMainPanel,
+.authoringSidePanel {
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.authoringMainPanel {
+  min-width: 0;
+}
+
+.authoringPanelHeader {
+  display: flex;
+  min-height: 58px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.authoringPanelHeader h2,
+.authoringPanelHeader h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.authoringFormFlow {
+  display: grid;
+  padding: 20px;
+  gap: 24px;
+}
+
+.authoringCoreFields {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.authoringCoreFields[data-has-duration="true"] {
+  grid-template-columns: minmax(0, 1fr) 210px;
+  align-items: start;
+}
+
+.authoringDurationField .textField {
+  font-variant-numeric: tabular-nums;
+}
+
+.authoringFieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.authoringFieldset > legend {
+  margin-bottom: 9px;
+  color: var(--foregroundMuted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.authoringCapabilityFieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 16px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.authoringCapabilityFieldset > legend {
+  margin-bottom: 9px;
+  color: var(--foregroundMuted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.authoringCapabilityFieldset > p {
+  margin: 8px 0 0;
+  color: var(--foregroundSubtle);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.authoringModeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.authoringModeOption {
+  display: flex;
+  min-height: 86px;
+  padding: 13px;
+  border: 1px solid var(--borderStrong);
+  border-radius: var(--radiusControl);
+  background: var(--surfaceRaised);
+  cursor: pointer;
+  gap: 10px;
+}
+
+.authoringModeOption:has(input:checked) {
+  border-color: var(--primary);
+  background: color-mix(in oklch, var(--primary) 7%, var(--surface));
+}
+
+.authoringModeOption input {
+  margin-top: 3px;
+  accent-color: var(--primary);
+}
+
+.authoringModeOption strong,
+.authoringModeOption small {
+  display: block;
+}
+
+.authoringModeOption small {
+  margin-top: 5px;
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+.authoringSegmented {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid var(--borderStrong);
+  border-radius: var(--radiusControl);
+  overflow-x: auto;
+}
+
+.authoringSegmented label {
+  flex: 0 0 auto;
+  border-left: 1px solid var(--borderStrong);
+  cursor: pointer;
+}
+
+.authoringSegmented label:first-child {
+  border-left: 0;
+}
+
+.authoringSegmented input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.authoringSegmented span {
+  display: block;
+  min-width: 54px;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.authoringSegmented input:checked + span {
+  background: var(--primary);
+  color: var(--primaryForeground);
+}
+
+.authoringSegmented input:focus-visible + span {
+  outline: 3px solid var(--focusRing);
+  outline-offset: -3px;
+}
+
+.authoringSectionHeader {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.authoringSectionHeader h3 {
+  display: inline;
+  margin: 0 8px 0 0;
+  font-size: 0.92rem;
+}
+
+.authoringSectionHeader span {
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+}
+
+.functionCatalogSection,
+.manualAuthoringSection {
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.manualPaperRule {
+  display: grid;
+  margin-top: 8px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 220px);
+  align-items: end;
+  gap: 12px 20px;
+}
+
+.manualPaperRule fieldset {
+  display: grid;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.manualPaperRule legend {
+  margin-bottom: 7px;
+  color: var(--foregroundMuted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.manualPaperRule fieldset > label {
+  display: grid;
+  min-width: 0;
+  min-height: 64px;
+  padding: 9px 10px;
+  border: 1px solid var(--borderStrong);
+  border-radius: var(--radiusControl);
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  cursor: pointer;
+  gap: 8px;
+}
+
+.manualPaperRule fieldset > label:has(input:checked) {
+  border-color: var(--primary);
+  background: var(--surfaceInset);
+}
+
+.manualPaperRule input[type="radio"] {
+  margin-top: 3px;
+  accent-color: var(--primary);
+}
+
+.manualPaperRule strong,
+.manualPaperRule small {
+  display: block;
+}
+
+.manualPaperRule strong {
+  font-size: 0.8rem;
+}
+
+.manualPaperRule small,
+.manualPaperRule > p {
+  color: var(--foregroundSubtle);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.manualPaperRule small {
+  margin-top: 3px;
+}
+
+.manualPaperRule > p {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-family: var(--fontNumeric);
+}
+
+.functionCatalogGroups {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 20px;
+}
+
+.functionCatalogGroup {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.functionCatalogGroup legend {
+  width: 100%;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.functionCatalogGroup > div {
+  display: flex;
+  padding: 9px 0;
+  flex-wrap: wrap;
+  gap: 5px 14px;
+}
+
+.functionCatalogOption {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.functionCatalogOption input {
+  accent-color: var(--primary);
+}
+
+.functionCatalogOption code {
+  font-size: 0.75rem;
+}
+
+.rosterImportField {
+  display: grid;
+  gap: 10px;
+}
+
+.rosterImportHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.rosterImportHeading strong,
+.rosterImportHeading small {
+  display: block;
+}
+
+.rosterImportHeading strong {
+  color: var(--foregroundMuted);
+  font-size: 0.78rem;
+}
+
+.rosterImportHeading small {
+  max-width: 640px;
+  margin-top: 4px;
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+}
+
+.rosterImportHeading input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.rosterFileButton {
+  min-height: var(--controlHeight);
+  padding: 9px 13px;
+  border: 1px solid var(--borderStrong);
+  border-radius: var(--radiusControl);
+  background: var(--surfaceRaised);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.rosterFileButton:hover {
+  background: var(--surfaceInset);
+}
+
+.rosterImportResult {
+  border: 1px solid var(--border);
+  background: var(--surfaceRaised);
+}
+
+.rosterImportMetrics {
+  display: flex;
+  padding: 9px 11px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  gap: 14px;
+  font-size: 0.75rem;
+}
+
+.rosterImportMetrics strong {
+  color: var(--success);
+  font-size: 0.82rem;
+}
+
+.rosterPreviewHeader,
+.rosterPreviewRow {
+  display: grid;
+  padding: 6px 11px;
+  border-bottom: 1px solid var(--border);
+  grid-template-columns: minmax(100px, 0.4fr) minmax(0, 1fr);
+  gap: 12px;
+  font-size: 0.75rem;
+}
+
+.rosterPreviewHeader {
+  min-height: 30px;
+  align-items: center;
+  background: var(--surfaceInset);
+  color: var(--foregroundMuted);
+  font-weight: 700;
+}
+
+.rosterPreviewRow {
+  min-height: 32px;
+}
+
+.rosterPreviewRow:last-of-type {
+  border-bottom: 0;
+}
+
+.rosterPreview > p {
+  margin: 0;
+  padding: 6px 11px;
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+}
+
+.manualAddMenu {
+  position: relative;
+}
+
+.manualAddMenu summary {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.manualAddMenu summary::-webkit-details-marker {
+  display: none;
+}
+
+.manualAddMenu > div {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 6px);
+  right: 0;
+  display: grid;
+  min-width: 190px;
+  padding: 5px;
+  border: 1px solid var(--borderStrong);
+  background: var(--surfaceRaised);
+  box-shadow: var(--shadowDialog);
+}
+
+.manualAddMenu button {
+  min-height: 38px;
+  padding: 8px 10px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.78rem;
+}
+
+.manualAddMenu button:last-child {
+  border-bottom: 0;
+}
+
+.manualAddMenu button:hover {
+  background: var(--surfaceInset);
+}
+
+.manualEmptyState {
+  margin: 10px 0 0;
+  padding: 28px 16px;
+  border: 1px dashed var(--borderStrong);
+  color: var(--foregroundMuted);
+  text-align: center;
+  font-size: 0.78rem;
+}
+
+.manualQuestionList {
+  display: grid;
+  margin-top: 10px;
+  gap: 0;
+}
+
+.manualQuestionCard {
+  display: grid;
+  padding: 16px 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  background: transparent;
+  gap: 14px;
+}
+
+.manualQuestionCard:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.manualQuestionCard > header {
+  display: flex;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.manualQuestionCard > header > div:first-child {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+}
+
+.manualQuestionCard > header span {
+  color: var(--foregroundMuted);
+  font-family: var(--fontNumeric);
+  font-size: 0.75rem;
+}
+
+.manualQuestionCard > header strong {
+  font-size: 0.82rem;
+}
+
+.manualCardActions,
+.manualInlineActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.manualCardActions .uiButton {
+  min-height: 34px;
+  padding: 5px 9px;
+  font-size: 0.75rem;
+}
+
+.manualChoiceOptions,
+.manualFillEditor,
+.manualShortAnswerFields {
+  display: grid;
+  gap: 10px;
+}
+
+.manualChoiceRow {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) 38px;
+  align-items: center;
+  gap: 7px;
+}
+
+.manualCorrectToggle {
+  display: grid;
+  place-items: center;
+}
+
+.manualCorrectToggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.manualFillEditor > .uiButton {
+  width: fit-content;
+}
+
+.manualBlankRow {
+  display: grid;
+  padding: 10px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklch, var(--info) 5%, var(--surface));
+  grid-template-columns: auto auto minmax(140px, 1fr) 38px;
+  align-items: center;
+  gap: 9px;
+}
+
+.manualBlankRow code {
+  color: var(--primary);
+  font-size: 0.75rem;
+}
+
+.manualAnswerToggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.manualAnswerToggle input {
+  accent-color: var(--primary);
+}
+
+.manualBlankRow .textareaField {
+  min-height: 64px;
+}
+
+.manualImagePreview {
+  display: grid;
+  padding: 10px;
+  border: 1px solid var(--border);
+  grid-template-columns: minmax(110px, 180px) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.manualImagePreview img {
+  width: 100%;
+  max-height: 140px;
+  background: var(--surfaceInset);
+  object-fit: contain;
+}
+
+.authoringActions {
+  display: flex;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.authoringActionError {
+  margin: 0 20px 14px;
+}
+
+.authoringSideColumn {
+  display: grid;
+  min-width: 0;
+  gap: 16px;
+}
+
+.authoringPanelEmpty {
+  margin: 0;
+  padding: 28px 18px;
+  color: var(--foregroundMuted);
+  text-align: center;
+  font-size: 0.78rem;
+}
+
+.authoringSidePanel > .inlineFeedback {
+  margin: 14px;
+}
+
+.authoringPreviewContent {
+  display: grid;
+  padding: 14px;
+  gap: 12px;
+}
+
+.authoringPreviewMetrics {
+  display: grid;
+  border-block: 1px solid var(--border);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.authoringPreviewMetrics > div {
+  min-width: 0;
+  padding: 10px;
+  border-left: 1px solid var(--border);
+}
+
+.authoringPreviewMetrics > div:first-child {
+  border-left: 0;
+}
+
+.authoringPreviewMetrics span,
+.authoringPreviewMetrics strong {
+  display: block;
+}
+
+.authoringPreviewMetrics span {
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+}
+
+.authoringPreviewMetrics strong {
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.84rem;
+  white-space: nowrap;
+}
+
+.functionAllocationList,
+.manualPreviewList {
+  display: grid;
+  max-height: 300px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.functionAllocationList li,
+.manualPreviewList li {
+  display: flex;
+  min-width: 0;
+  padding: 8px 2px;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.75rem;
+}
+
+.manualPreviewList {
+  counter-reset: manualPreview;
+}
+
+.manualPreviewList li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  justify-content: initial;
+}
+
+.manualPreviewList span {
+  overflow: hidden;
+  color: var(--foregroundMuted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.configurationHistoryList {
+  display: grid;
+}
+
+.configurationHistoryItem {
+  display: grid;
+  width: 100%;
+  padding: 11px 14px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  gap: 7px;
+}
+
+.configurationHistoryItem:last-child {
+  border-bottom: 0;
+}
+
+.configurationHistoryItem:hover:not(:disabled) {
+  background: var(--surfaceInset);
+}
+
+.configurationHistoryItem:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.configurationHistoryTitle {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.configurationHistoryTitle strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.configurationHistoryTitle small,
+.configurationHistoryItem time {
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+}
+
+.configurationHistoryTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.configurationHistoryTags code {
+  padding: 2px 4px;
+  border: 1px solid var(--border);
+  background: var(--surfaceRaised);
+  font-size: 0.75rem;
+}
+
+.preparationDialog {
+  width: min(540px, calc(100vw - 28px));
+  padding: 0;
+  border: 1px solid var(--borderStrong);
+  border-radius: var(--radiusPanel);
+  background: var(--surfaceRaised);
+  color: var(--foreground);
+  box-shadow: var(--shadowDialog);
+}
+
+.preparationDialog::backdrop {
+  background: color-mix(in oklch, var(--sidebar) 66%, transparent);
+}
+
+.preparationDialogBody {
+  display: grid;
+  padding: 24px;
+  gap: 13px;
+}
+
+.preparationDialogBody h2,
+.preparationDialogBody p {
+  margin: 0;
+}
+
+.preparationDialogBody > p {
+  color: var(--foregroundMuted);
+  font-size: 0.8rem;
+}
+
+.preparationProgress {
+  width: 100%;
+  height: 10px;
+  border: 0;
+  accent-color: var(--primary);
+}
+
+.preparationMetrics {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--fontNumeric);
+}
+
+.preparationMetrics strong {
+  color: var(--primary);
+  font-size: 1.35rem;
+}
+
+.preparationMetrics span {
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+}
+
+.preparationSteps {
+  display: grid;
+  margin: 4px 0;
+  padding: 0;
+  list-style: none;
+  gap: 7px;
+}
+
+.preparationSteps li {
+  color: var(--foregroundMuted);
+  font-size: 0.76rem;
+}
+
+.preparationSteps li::before {
+  margin-right: 8px;
+  content: "○";
+}
+
+.preparationSteps li[data-active="true"] {
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.preparationSteps li[data-active="true"]::before {
+  color: var(--info);
+  content: "◉";
+}
+
+.preparationSteps li[data-complete="true"] {
+  color: var(--success);
+}
+
+.preparationSteps li[data-complete="true"]::before {
+  content: "✓";
+}
+
+.preparationDialogActions {
+  display: flex;
+  padding: 14px 24px;
+  border-top: 1px solid var(--border);
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.preparationDialogActions a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+@media (max-width: 1180px) {
+  .authoringWorkspaceGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .authoringSideColumn {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 48rem) {
+  .authoringCoreFields[data-has-duration="true"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .authoringModeGrid,
+  .functionCatalogGroups,
+  .authoringSideColumn {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .authoringFormFlow {
+    padding: 16px;
+  }
+
+  .rosterImportHeading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .rosterFileButton {
+    width: fit-content;
+  }
+
+  .manualBlankRow,
+  .manualImagePreview,
+  .manualPaperRule,
+  .manualPaperRule fieldset {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .manualBlankRow > .uiButton {
+    width: fit-content;
+  }
+
+  .authoringActions {
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .authoringPanelHeader,
+  .authoringSectionHeader,
+  .manualQuestionCard > header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .authoringPreviewMetrics {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .authoringPreviewMetrics > div {
+    border-top: 1px solid var(--border);
+    border-left: 0;
+  }
+
+  .authoringPreviewMetrics > div:first-child {
+    border-top: 0;
+  }
+
+  .authoringActions > .uiButton {
+    width: 100%;
+  }
+}

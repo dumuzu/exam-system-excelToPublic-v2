@@ -1,0 +1,343 @@
+.uiButton {
+  min-height: var(--controlHeight);
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--radiusControl);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition:
+    background-color var(--durationFast) var(--easeOut),
+    border-color var(--durationFast) var(--easeOut),
+    color var(--durationFast) var(--easeOut);
+}
+
+.uiButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.uiButtonPrimary {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--primaryForeground);
+}
+
+.uiButtonPrimary:not(:disabled):hover {
+  border-color: var(--primaryHover);
+  background: var(--primaryHover);
+}
+
+.uiButtonSecondary {
+  border-color: var(--borderStrong);
+  background: var(--surfaceRaised);
+}
+
+.uiButtonSecondary:not(:disabled):hover,
+.uiButtonQuiet:not(:disabled):hover {
+  border-color: var(--foregroundMuted);
+  background: var(--surfaceInset);
+}
+
+.uiButtonQuiet {
+  border-color: transparent;
+  background: transparent;
+}
+
+.uiButtonDanger {
+  border-color: var(--danger);
+  background: var(--danger);
+  color: var(--dangerForeground);
+}
+
+.fieldGroup,
+.selectGroup {
+  display: grid;
+  gap: 6px;
+}
+
+.fieldLabel,
+.selectLabel {
+  color: var(--foregroundMuted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.textField,
+.selectField,
+.textareaField {
+  width: 100%;
+  min-height: var(--controlHeight);
+  border: 1px solid var(--borderStrong);
+  border-radius: var(--radiusControl);
+  background: var(--surfaceRaised);
+}
+
+.textField:disabled,
+.selectField:disabled,
+.textareaField:disabled,
+.localeSelectField:disabled {
+  background: var(--surfaceInset);
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.textField {
+  padding: 9px 12px;
+}
+
+.textareaField {
+  min-height: 92px;
+  padding: 9px 12px;
+  line-height: 1.65;
+  resize: vertical;
+}
+
+.selectField {
+  padding: 8px 34px 8px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.textField:hover,
+.selectField:hover,
+.textareaField:hover {
+  border-color: var(--foregroundMuted);
+}
+
+.textField[aria-invalid="true"],
+.textareaField[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.fieldMessage,
+.selectDetail {
+  display: block;
+  min-height: 1lh;
+  color: var(--foregroundSubtle);
+  font-size: 0.75rem;
+}
+
+.fieldMessageError {
+  color: var(--danger);
+}
+
+.localeSelector {
+  display: inline-flex;
+}
+
+.localeSelectField {
+  min-height: var(--controlHeight);
+  padding: 7px 30px 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusControl);
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.localeSelectField:hover {
+  border-color: var(--foregroundMuted);
+  background: var(--surfaceRaised);
+}
+
+.uiBadge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 2px 8px;
+  border: 1px solid var(--borderStrong);
+  border-radius: var(--radiusControl);
+  background: var(--surfaceRaised);
+  color: var(--foregroundMuted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.uiBadge[data-tone="success"] {
+  border-color: color-mix(in oklch, var(--success) 38%, var(--border));
+  color: var(--success);
+}
+
+.uiBadge[data-tone="warning"] {
+  border-color: color-mix(in oklch, var(--warning) 38%, var(--border));
+  color: var(--warning);
+}
+
+.uiBadge[data-tone="danger"] {
+  border-color: color-mix(in oklch, var(--danger) 38%, var(--border));
+  color: var(--danger);
+}
+
+.uiBadge[data-tone="info"] {
+  border-color: color-mix(in oklch, var(--info) 38%, var(--border));
+  color: var(--info);
+}
+
+.inlineFeedback {
+  padding: 10px 12px;
+  border: 1px solid color-mix(in oklch, var(--info) 42%, var(--border));
+  border-radius: var(--radiusControl);
+  margin: 0;
+  background: color-mix(in oklch, var(--info) 7%, var(--surface));
+  color: var(--foregroundMuted);
+  font-size: 0.82rem;
+}
+
+.inlineFeedback[data-tone="error"] {
+  border-color: color-mix(in oklch, var(--danger) 42%, var(--border));
+  background: color-mix(in oklch, var(--danger) 7%, var(--surface));
+  color: var(--danger);
+}
+
+.inlineFeedback[data-tone="success"] {
+  border-color: color-mix(in oklch, var(--success) 42%, var(--border));
+  background: color-mix(in oklch, var(--success) 7%, var(--surface));
+  color: var(--success);
+}
+
+.uiSkeleton {
+  display: block;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--surfaceInset);
+}
+
+.uiSkeleton::after {
+  display: block;
+  width: 35%;
+  height: 100%;
+  background: var(--border);
+  content: "";
+  opacity: 0.65;
+  animation: skeletonSweep 1.3s var(--easeInOut) infinite;
+}
+
+.pageSkeleton {
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.skeletonTitle {
+  width: 38%;
+  height: 20px;
+  margin-bottom: 8px;
+}
+
+.skeletonRow {
+  width: 100%;
+  height: 42px;
+}
+
+.emptyState,
+.errorState {
+  padding: 40px 24px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  text-align: center;
+}
+
+.emptyState h2,
+.errorState h2 {
+  margin-bottom: 8px;
+  font-size: 1.08rem;
+}
+
+.emptyState > p:not(.stateEyebrow),
+.errorState > p:not(.stateEyebrow) {
+  max-width: 560px;
+  margin-right: auto;
+  margin-bottom: 20px;
+  margin-left: auto;
+  color: var(--foregroundMuted);
+}
+
+.errorState {
+  border-color: color-mix(in oklch, var(--danger) 38%, var(--border));
+}
+
+.stateAction {
+  margin-top: 16px;
+}
+
+.confirmDialog {
+  width: min(520px, calc(100vw - 32px));
+  padding: 0;
+  border: 1px solid var(--borderStrong);
+  border-radius: var(--radiusDialog);
+  background: var(--surfaceRaised);
+  color: var(--foreground);
+}
+
+.confirmDialog::backdrop {
+  background: color-mix(in oklch, var(--sidebar) 62%, transparent);
+}
+
+.confirmDialogBody {
+  display: grid;
+  padding: 24px;
+  gap: 12px;
+}
+
+.confirmDialogBody h2,
+.confirmDialogBody p {
+  margin: 0;
+}
+
+.confirmDialogBody p {
+  color: var(--foregroundMuted);
+  line-height: 1.7;
+}
+
+.confirmDialogBody code {
+  width: fit-content;
+  padding: 5px 8px;
+  border: 1px solid var(--border);
+  background: var(--surfaceInset);
+  font-size: 0.78rem;
+}
+
+.confirmDialogBody .dialogProgress {
+  color: var(--info);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.confirmDialogActions {
+  display: flex;
+  padding: 14px 24px;
+  border-top: 1px solid var(--border);
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@media (pointer: coarse) {
+  .uiButton:not(:disabled):active,
+  .tableLink:active,
+  .navigationItem:active {
+    transform: translateY(1px);
+  }
+}
+
+@keyframes skeletonSweep {
+  from { transform: translateX(-110%); }
+  to { transform: translateX(390%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

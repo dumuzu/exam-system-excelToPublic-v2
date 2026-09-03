@@ -1,0 +1,132 @@
+.questionCard { width: min(94vw, 2000px); min-height: 0; padding: 0; box-shadow: 0 18px 55px rgb(30 47 43 / 8%); }
+.examControlBar { position: sticky; top: 0; z-index: 5; display: grid; grid-template-columns: minmax(240px,1.3fr) 130px 220px auto; align-items: stretch; border-bottom: 1px solid #bdc7c4; background: #f8faf9; }
+.examControlBar > div { display: grid; align-content: center; gap: 3px; min-height: 68px; border-right: 1px solid var(--line); padding: 9px 18px; }
+.examControlBar small { font: 700 .58rem ui-monospace, monospace; letter-spacing: .08em; }
+.examControlBar strong, .examControlBar time, .examControlBar span { display: block; }
+.examStudentIdentity strong { overflow: hidden; font-size: .9rem; text-overflow: ellipsis; unicode-bidi: plaintext; white-space: nowrap; }
+.examStudentIdentity span { color: var(--muted); font: 700 .7rem ui-monospace, monospace; }
+.examProgress strong, .examCountdown time { font: 800 .86rem ui-monospace, monospace; }
+.examCountdown time { color: #8b3b2f; }
+.submitTopButton { width: auto; min-width: 190px; border-radius: 0; padding: 10px 22px; background: #9c392f; }
+.submitTopButton:hover { background: #7d2e27; }
+.submitTopButton small { color: #f6d9d5; font-size: .56rem; letter-spacing: .08em; }
+.examWorkspaceGrid { display: grid; grid-template-columns: clamp(176px, 10vw, 220px) minmax(0,1fr) clamp(184px, 10vw, 220px); gap: clamp(16px, 1.3vw, 26px); min-height: 0; padding: clamp(18px, 1.35vw, 28px) clamp(20px, 1.6vw, 34px) 20px; }
+.examLeftRail { display: grid; min-height: 0; align-content: start; border-right: 1px solid var(--line); padding-right: 18px; }
+.questionNavigator { min-width: 0; }
+.questionNavigator > div:first-child { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.questionNavigator span { color: var(--muted); font-size: .7rem; }
+.questionNavigatorDock { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
+.questionIndex { display: grid; grid-template-columns: repeat(auto-fill, minmax(34px, 42px)); gap: 5px; }
+.questionIndex button { min-height: 34px; border: 1px solid var(--line); border-radius: 2px; padding: 0; color: var(--muted); background: #fff; font: 700 .72rem ui-monospace,monospace; }
+.questionIndex button.isCurrent { border-color: var(--accent); color: #fff; background: var(--accent); }
+.questionIndex button.isAnswered:not(.isCurrent) { border-color: #83aaa1; color: var(--accent); background: #e6f2ef; }
+.questionMain { min-width: 0; min-height: 0; border: 2px solid transparent; border-radius: 4px; padding: 2px clamp(12px, 1.25vw, 22px) 16px; transition: border-color .2s,background .2s; }
+.questionMain.hasAnswer { border-color: #76a99d; background: linear-gradient(180deg,#f7fbfa 0,#fff 180px); }
+.examSideNote { min-height: 0; align-self: start; border-top: 4px solid #255f54; padding: 13px 4px 0; color: #36454a; }
+.examSideNote h2 { margin: 3px 0 11px; font-size: .94rem; }
+.examSideNote ul,.examSideNote ol { display: grid; gap: 10px; margin: 0; padding-left: 18px; font-size: .73rem; line-height: 1.38; }
+.examSideNote small { color: var(--muted); font-size: .66rem; }
+.sideKicker { margin: 0; color: var(--accent); font: 700 .64rem ui-monospace,monospace; letter-spacing: .12em; }
+.questionHeading { display: flex; align-items: start; justify-content: space-between; gap: 18px; }
+.questionHeading time { color: var(--muted); font-family: ui-monospace, monospace; font-size: 0.72rem; }
+.questionHeading h1 { margin: 0; color: #56636b; font: 700 .72rem ui-monospace,monospace; letter-spacing: .08em; }
+.questionHeading > div:first-child { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.functionCountBadge { border: 1px solid #a78a47; padding: 5px 8px; color: #6f541b; background: #fff9e9; font: 700 .65rem ui-monospace,monospace; letter-spacing: .03em; }
+.editTools { display: flex; gap: 4px; }
+.editTools button { width: 36px; min-height: 34px; border: 1px solid var(--line); color: var(--text); background: #fff; font-size: 1.1rem; }
+.questionMain > .intro { margin: 14px 0 13px; border-left: 5px solid var(--accent); padding: 12px 16px; color: #182126; background: #f8faf9; font-family: inherit; font-size: clamp(1rem, .92vw, 1.18rem); font-weight: 600; line-height: 1.65; letter-spacing: 0; }
+.questionPromptEn { margin: -6px 0 13px; padding: 0 16px; color: #53636b; font-size: clamp(.82rem, .72vw, .94rem); line-height: 1.5; }
+
+html[data-student-locale="ja"] .strictRules small,
+html[data-student-locale="ja"] .assignmentRules small,
+html[data-student-locale="ja"] .examRules small,
+html[data-student-locale="ja"] .examGuide small {
+  display: none;
+}
+
+html[data-student-locale="en"] .strictRules strong,
+html[data-student-locale="en"] .assignmentRules strong,
+html[data-student-locale="en"] .examRules li > :first-child:not(small),
+html[data-student-locale="en"] .examGuide li > :first-child:not(small) {
+  display: none;
+}
+
+html[data-student-locale="en"] .strictRules small,
+html[data-student-locale="en"] .assignmentRules small,
+html[data-student-locale="en"] .examRules small,
+html[data-student-locale="en"] .examGuide small {
+  display: block;
+  color: inherit;
+  font-size: inherit;
+}
+.questionMain ruby rt { color: #7a5b20; font-size: .55em; }
+.tip { border-left: 3px solid var(--accent); padding: 8px 12px; color: var(--accent); background: #f3f8f7; font-size: 0.84rem; line-height: 1.55; }
+.sheetWorkbench { overflow: visible; margin: 14px 0 10px; border: 1px solid #b7c1bf; background: #fff; box-shadow: 0 5px 18px rgb(32 49 45 / 7%); }
+.formulaEntry { position: relative; }
+.formulaBar { display: grid; grid-template-columns: 72px 42px minmax(240px, 1fr); min-height: 48px; border-top: 1px solid #b7c1bf; background: #f5f7f6; }
+.nameBox, .fxMark { display: grid; place-items: center; border-right: 1px solid #c9d0d4; color: #46535e; font: 700 .8rem ui-monospace, monospace; }
+.fxMark { color: var(--accent); font-family: Georgia, serif; font-size: 1.05rem; font-style: italic; }
+.formulaBar input { width: 100%; border: 0; padding: 10px 14px; color: #182126; background: #fff; font: 1.08rem Consolas, "Courier New", monospace; outline: none; }
+.formulaBar:focus-within { box-shadow: inset 0 0 0 2px var(--accent); }
+.formulaSuggestions { position: absolute; z-index: 12; top: calc(100% - 1px); right: -1px; left: 127px; max-height: 300px; overflow-y: auto; border: 1px solid #96aaa5; background: #fff; box-shadow: 0 16px 35px rgb(22 43 38 / 18%); }
+.formulaSuggestions[hidden] { display: none; }
+.formulaSuggestion { display: grid; min-height: 58px; gap: 4px; border: 0; border-bottom: 1px solid #e1e6e4; border-radius: 0; padding: 9px 13px; color: #25312e; background: #fff; text-align: left; }
+.formulaSuggestion:last-child { border-bottom: 0; }
+.formulaSuggestion:hover,.formulaSuggestion.isActive { color: #163f36; background: #eaf4f1; }
+.formulaSuggestion span { display: flex; min-width: 0; align-items: baseline; gap: 12px; }
+.formulaSuggestion strong { flex: 0 0 auto; font: 800 .86rem ui-monospace,monospace; }
+.formulaSuggestion code { overflow: hidden; color: #53645f; font: .72rem ui-monospace,monospace; text-overflow: ellipsis; white-space: nowrap; }
+.formulaSuggestion small { overflow: hidden; color: #697773; font-size: .68rem; text-overflow: ellipsis; white-space: nowrap; }
+.formulaFunctionHelp { display: grid; grid-template-columns: minmax(220px,auto) 1fr; gap: 4px 18px; border-top: 1px solid #d5ddda; padding: 10px 13px; color: #34423e; background: #f7faf9; }
+.formulaFunctionHelp[hidden] { display: none; }
+.formulaFunctionHelp code { grid-row: 1 / 3; align-self: center; color: #176b59; font: 700 .76rem ui-monospace,monospace; }
+.formulaFunctionHelp span { font-size: .72rem; }
+.formulaFunctionHelp small { color: #6c7975; font-size: .67rem; }
+.sheetWrap { overflow-x: auto; overscroll-behavior-x: contain; border-bottom: 0; background: #f6f8f7; user-select: none; }
+.sheet { width: 100%; min-width: 960px; border-collapse: separate; border-spacing: 0; table-layout: fixed; font-size: .9rem; }
+.sheet th, .sheet td { height: 44px; min-width: 140px; border-right: 1px solid #d6ddda; border-bottom: 1px solid #d6ddda; padding: 7px 10px; text-align: left; }
+.sheet .columnLetter, .sheet .rowNumber, .sheet .cornerCell { min-width: 46px; width: 46px; padding: 0; color: #fff; background: #365b52; font: 800 .74rem ui-monospace, monospace; text-align: center; }
+.sheet .cornerCell { background: #27463f; }
+.sheet .columnLetter { min-width: 140px; width: auto; }
+.sheet .fieldHeader { border-bottom-color: #aebfba; color: #21342f; background: #dfeae6; font: 800 .78rem ui-monospace, monospace; }
+.sheet .dataCell { position: relative; cursor: cell; background: #fff; }
+.sheet .dataCell:hover { background: #f3f8f6; }
+.sheet .dataCell.isSelected { background: #e1f1ec; box-shadow: inset 0 0 0 1px #70a798; }
+.sheet .dataCell.isSelectionEdge { box-shadow: inset 0 0 0 2px #16765f; }
+.sheet .columnLetter.isSelected, .sheet .rowNumber.isSelected { color: #fff; background: #277966; }
+.answerActions { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 12px; }
+.answerActions .status { margin: 0; }
+.answerActions > div { display: flex; flex-wrap: wrap; gap: 7px; justify-content: flex-end; }
+.answerActions button { width: auto; }
+.secondaryAction { border: 1px solid var(--line); color: var(--text); background: #fff; }
+.secondaryAction:hover { background: #eef3f2; }
+.choiceWorkbench { margin: 28px 0; border: 1px solid var(--line); padding: clamp(20px, 1.7vw, 34px); }
+.choiceWorkbench legend { padding: 0 7px; font-size: .82rem; font-weight: 700; }
+.choiceWorkbench label { display: flex; min-height: 62px; align-items: center; gap: 15px; border-top: 1px solid var(--line); padding: 14px 10px; cursor: pointer; font: 700 1.02rem ui-monospace,monospace; }
+.choiceWorkbench label:first-child { border-top: 0; }
+
+@media (min-width: 981px) {
+  body.examInProgress { height: 100vh; height: 100dvh; overflow: hidden; }
+  body.examInProgress .examPage { overflow: hidden; place-items: stretch center; padding-block: 10px; }
+  body.examInProgress .examFooter { min-height: 28px; padding-block: 5px; }
+  #questionCard:not([hidden]) { display: grid; height: 100%; max-height: 100%; grid-template-rows: auto minmax(0, 1fr); overflow: hidden; }
+  #questionCard:not([hidden]) .examWorkspaceGrid { overflow: hidden; }
+  #questionCard:not([hidden]) .examLeftRail,
+  #questionCard:not([hidden]) .questionMain,
+  #questionCard:not([hidden]) .examGuide { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+}
+
+@media (min-width: 981px) and (max-height: 1000px) {
+  .examHeader { min-height: 52px; }
+  .examControlBar > div { min-height: 60px; padding-block: 7px; }
+  .examWorkspaceGrid { padding-block: 14px; }
+  .questionMain > .intro { margin-block: 10px; padding-block: 9px; line-height: 1.55; }
+  .questionPromptEn { margin-bottom: 10px; }
+  .tip { padding-block: 6px; line-height: 1.45; }
+  .sheetWorkbench { margin-block: 10px 8px; }
+  .sheet th, .sheet td { height: 36px; padding-block: 5px; }
+  .formulaBar { min-height: 44px; }
+  .questionNavigatorDock { margin-top: 10px; padding-top: 9px; }
+  .questionIndex button { min-height: 31px; }
+  .answerActions { margin-top: 9px; }
+}

@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 0;
+  overflow-x: clip;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--fontUi);
+  font-size: 16px;
+  font-synthesis: none;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-width: 0;
+  min-height: 100vh;
+  overflow-x: clip;
+  margin: 0;
+  background: var(--background);
+}
+
+button,
+input,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+}
+
+button,
+a,
+select,
+input {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+a {
+  color: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--focusRing);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-style: normal;
+  letter-spacing: -0.03em;
+}
+
+code,
+.numericCell {
+  font-family: var(--fontNumeric);
+  font-variant-numeric: tabular-nums;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skipLink {
+  position: fixed;
+  z-index: 100;
+  top: 8px;
+  left: 8px;
+  min-height: var(--controlHeight);
+  padding: 10px 14px;
+  border-radius: var(--radiusControl);
+  background: var(--surfaceRaised);
+  color: var(--foreground);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(calc(-100% - 16px));
+}
+
+.skipLink:focus-visible {
+  transform: translateY(0);
+}
+
+.bootState,
+.routeState {
+  display: grid;
+  min-height: 100vh;
+  padding: 32px;
+  place-content: center;
+  text-align: center;
+}
+
+.stateEyebrow {
+  color: var(--foregroundMuted);
+  font-family: var(--fontNumeric);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.bootIndicator {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: bootIndicatorSpin 700ms linear infinite;
+}
+
+@keyframes bootIndicatorSpin {
+  to { transform: rotate(360deg); }
+}

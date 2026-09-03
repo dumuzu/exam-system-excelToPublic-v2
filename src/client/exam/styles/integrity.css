@@ -1,0 +1,13 @@
+.violationDialog { width: 100vw; max-width: none; height: 100vh; max-height: none; margin: 0; border: 0; padding: clamp(24px,6vw,80px); color: var(--ink); background: #5f1714; text-align: center; }
+.violationDialog[open] { display: grid; place-items: center; }
+.violationDialog::backdrop { background: #5f1714; }
+.violationPanel { width: min(100%,680px); border: 3px solid #b73a31; padding: clamp(28px,5vw,56px); background: #fff; box-shadow: 0 30px 100px rgb(20 5 4 / 55%); }
+.warningSymbol { display: grid; width: 52px; height: 52px; margin: 0 auto 16px; place-items: center; border-radius: 50%; color: #fff; background: #b73a31; font: 800 1.5rem Georgia, serif; }
+.violationDialog h2 { margin: 6px 0 18px; font-size: clamp(1.45rem,3vw,2.2rem); }
+.violationDialog h2 small { color: #8c332c; font: 700 .58em ui-monospace, monospace; letter-spacing: .05em; }
+.violationDialog p { line-height: 1.75; }
+.violationMessageEn { color: #4e5961; font-size: .86rem; }
+.violationCount { color: #a12f28; font: 700 .85rem ui-monospace, monospace; }
+.violationCheatingRule { border: 2px solid #b73a31; padding: 12px; color: #7f211c; background: #fff0ee; font-size: .86rem; font-weight: 800; }
+.violationZeroRule { border: 1px solid #e3bbb6; padding: 10px; color: #8b302a; background: #fff2f0; font-size: .78rem; }
+.violationDialog button small { color: #f4d8d5; font-size: .58rem; }

@@ -1,0 +1,44 @@
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V4 */
+/* Hallmark · system: admin · macrostructure: workbench · audience: academic operations · use: exam management · genre: modern-minimal · tone: technical · anchor hue: deep-teal */
+/* Hallmark · contrast: pass (40–41) · nav: N2 · footer: none · slop: pass (42–45) · honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive: pass (49) · icons: pass (30) · mobile: pass (34, 49, 50–57) */
+:root {
+  --background: oklch(95.7% 0.007 78);
+  --surface: oklch(98.2% 0.006 78);
+  --surfaceRaised: oklch(99.1% 0.004 78);
+  --surfaceInset: oklch(92.8% 0.008 78);
+  --foreground: oklch(23% 0.025 245);
+  --foregroundMuted: oklch(47% 0.018 245);
+  --foregroundSubtle: oklch(51% 0.014 245);
+  --border: oklch(85.5% 0.009 78);
+  --borderStrong: oklch(70% 0.012 210);
+  --primary: oklch(42% 0.065 190);
+  --primaryHover: oklch(34% 0.055 190);
+  --primaryForeground: oklch(97% 0.009 78);
+  --success: oklch(49% 0.1 151);
+  --warning: oklch(48% 0.11 76);
+  --danger: oklch(49% 0.15 28);
+  --dangerForeground: oklch(97% 0.009 78);
+  --info: oklch(50% 0.08 235);
+  --focusRing: oklch(64% 0.16 40);
+  --sidebar: oklch(23% 0.025 245);
+  --sidebarForeground: oklch(96% 0.014 78);
+  --sidebarMuted: oklch(75% 0.018 220);
+  --accent: oklch(64% 0.16 40);
+  --fontUi: "Noto Sans JP Variable", "Microsoft YaHei UI", "PingFang SC", "Hiragino Kaku Gothic ProN", sans-serif;
+  --fontDisplay: "Noto Sans JP Variable", "Arial Narrow", "Microsoft YaHei UI", "PingFang SC", sans-serif;
+  --fontNumeric: "Cascadia Mono", "SFMono-Regular", "JetBrains Mono", ui-monospace, monospace;
+  --radiusControl: 4px;
+  --radiusPanel: 6px;
+  --radiusDialog: 8px;
+  --controlHeight: 44px;
+  --space1: 4px;
+  --space2: 8px;
+  --space3: 12px;
+  --space4: 16px;
+  --durationFast: 120ms;
+  --durationBase: 160ms;
+  --easeOut: cubic-bezier(0.16, 1, 0.3, 1);
+  --easeInOut: cubic-bezier(0.65, 0, 0.35, 1);
+  --shadowDialog: 0 16px 40px oklch(23% 0.025 245 / 12%);
+  --sidebarWidth: 224px;
+}
