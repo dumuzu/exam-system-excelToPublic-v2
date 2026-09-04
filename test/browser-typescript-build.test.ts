@@ -13,6 +13,7 @@ const authoredModules: any = [
   "src/client/exam/fullscreen-compatibility.ts",
   "src/client/exam/japanese-readings.ts",
   "src/client/exam/submission-request.ts",
+  "src/client/exam/student-localization.ts",
   "src/client/shared/roster/index.ts",
 ];
 

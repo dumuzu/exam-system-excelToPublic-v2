@@ -161,6 +161,7 @@ const publicStaticFiles = new Set([
   "exam/japanese-readings.js",
   "exam/submission-request.js",
   "exam/student-entry-bridge.js",
+  "exam/student-localization.js",
   "shared/safe-markdown.js",
 ]);
 

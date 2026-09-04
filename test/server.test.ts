@@ -176,6 +176,7 @@ test("server separates student and administrator pages with browser safety heade
     assert.equal(rootResponse.headers.get("location"), "/exam/");
 
     const examResponse: any = await fetch(`${baseUrl}/exam/`);
+    const studentLocalizationResponse: any = await fetch(`${baseUrl}/exam/student-localization.js`);
     const adminResponse: any = await fetch(`${baseUrl}/admin/`);
     const retiredAdminAssetResponses: any = await Promise.all([
       "/admin/room-selection.js",
@@ -192,6 +193,8 @@ test("server separates student and administrator pages with browser safety heade
     const healthResponse: any = await fetch(`${baseUrl}/api/health`);
 
     assert.equal(examResponse.status, 200);
+    assert.equal(studentLocalizationResponse.status, 200);
+    assert.match(studentLocalizationResponse.headers.get("content-type"), /javascript/);
     assert.equal(adminResponse.status, 200);
     assert.equal(retiredAdminAssetResponses.every((asset: Response) => asset.status === 404), true);
     assert.equal(healthResponse.status, 200);
