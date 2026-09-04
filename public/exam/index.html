@@ -45,7 +45,7 @@
       <section class="examCard rulesWaitingCard" id="waiting-card" hidden>
         <p class="kicker">STRICT EXAM RULES / WAITING ROOM</p>
         <h1>試験規則を必ず読んでください。<br /><small>Read all exam rules before you begin.</small></h1>
-        <div class="waitingIdentity"><strong id="waiting-student"></strong><span id="waiting-student-number"></span><small><span id="waiting-exam"></span> · <span id="waiting-duration"></span> MINUTES</small></div>
+        <div class="waitingIdentity"><strong id="waiting-student"></strong><span id="waiting-student-number"></span><small><span id="waiting-exam"></span> · <span id="waiting-duration"></span> <span id="waiting-duration-unit">MINUTES</span></small></div>
         <ol class="strictRules">
           <li><strong>全画面を維持してください。解除されると試験内容は直ちに隠れます。復帰猶予は1回目10秒、2回目5秒、3回目以降3秒で、時間内に戻らない場合のみ警告として記録されます。</strong><small>Leaving this exam window is cheating. Recovery time decreases from 10 seconds to 5 seconds, then 3 seconds for every later interruption. Only a timeout records a warning.</small></li>
           <li><strong>別のタブ、ウィンドウ、アプリへ切り替えてはいけません。</strong><small>Do not switch to another tab, window, or application.</small></li>
@@ -76,7 +76,7 @@
         <h1>この答案はすでに提出されています。<br /><small>This attempt has already been submitted.</small></h1>
         <div class="waitingIdentity"><strong id="terminal-student"></strong><span id="terminal-student-number"></span><small id="terminal-exam"></small></div>
         <p class="terminalEntryMessage" id="terminalEntryMessage"></p>
-        <p>同じ答案を再び開くことはできません。再度ログインすると教師への入室申請になり、許可後は最初に準備された同じ問題を空の答案と新しい制限時間で開始します。<br /><small>The submitted answer sheet stays locked. Signing in again sends a new admission request. After teacher approval, the original prepared paper opens with blank answers and a new timer.</small></p>
+        <p id="terminalEntryBody">同じ答案を再び開くことはできません。再度ログインすると教師への入室申請になり、許可後は最初に準備された同じ問題を空の答案と新しい制限時間で開始します。<br /><small>The submitted answer sheet stays locked. Signing in again sends a new admission request. After teacher approval, the original prepared paper opens with blank answers and a new timer.</small></p>
         <div class="terminalEntryActions"><button class="secondaryAction" id="terminal-back" type="button">別の試験コードを入力<br /><small>ENTER ANOTHER CODE</small></button><button id="terminal-recheck" type="button">受験資格を再確認<br /><small>CHECK AGAIN</small></button></div>
         <p class="status" id="terminal-status" aria-live="polite">教師の指示を待ってください。 / Wait for your teacher.</p>
       </section>
@@ -140,7 +140,7 @@
 
       <section class="examCard submittedCard" id="submittedCard" hidden>
         <div class="submittedMark">✓</div><p class="kicker">SUBMITTED</p><h1>答案を提出しました</h1>
-        <p>提出後は問題や回答を再度見ることはできません。採点結果は先生から案内されます。</p>
+        <p id="submittedBody">提出後は問題や回答を再度見ることはできません。採点結果は先生から案内されます。</p>
         <dl><dt>提出時刻</dt><dd id="submitted-time"></dd><dt>提出方法</dt><dd id="submitted-type"></dd></dl>
         <div class="assignmentResult" id="assignmentResult" hidden><span>今回の得点 / YOUR SCORE</span><strong id="assignment-score"></strong><small id="assignment-correct-count"></small></div>
         <button id="assignment-retry" type="button" hidden>2回目の課題に進む<br /><small>START SECOND SUBMISSION</small></button>
@@ -169,7 +169,7 @@
       <div><button class="secondaryAction" id="final-submit-cancel" type="button">提出しない<br /><small>DO NOT SUBMIT</small></button><button class="dangerAction" id="final-submit-confirm" type="button" disabled>内容を確認してください<br /><small>REVIEW FIRST</small></button></div>
     </dialog>
     <footer class="examFooter">
-      <span class="examCopyright">© 2026 MinorCold_12 · MIT License</span>
+      <span class="examCopyright">© 2026 MinorCold_12. All rights reserved.</span>
     </footer>
     <!-- student-entry-react:start -->
     <script type="module" crossorigin src="/admin/react/assets/studentEntry-DU-j-ZOk.js"></script>

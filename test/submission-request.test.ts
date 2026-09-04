@@ -125,3 +125,14 @@ test("student submission distinguishes a server rejection from a lost connection
   assert.doesNotMatch(copy.dialog, /network/i);
   assert.match(copy.status, /SERVER/);
 });
+
+test("student submission failures use only the configured subject language", () => {
+  const error = Object.assign(new Error("Internal server error."), { status: 500 });
+  const english = describeSubmissionFailure(error, "en");
+  const chinese = describeSubmissionFailure(error, "zh");
+
+  assert.match(english.dialog, /server could not accept/i);
+  assert.doesNotMatch(english.dialog, /答案|服务器/);
+  assert.match(chinese.dialog, /服务器/);
+  assert.doesNotMatch(chinese.dialog, /server|答案を/i);
+});

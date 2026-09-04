@@ -11,7 +11,7 @@
     "build:client": "tsc --project tsconfig.client.json && vite build",
     "dev:react": "vite build --watch",
     "auth:migrate-legacy": "node --env-file-if-exists=.env scripts/migrate-legacy-admin-accounts.ts",
-    "check:generated": "node --check public/shared/safe-markdown.js && node --check public/exam/browser-compatibility.js && node --check public/exam/exam-behavior-guard.js && node --check public/exam/formula-assistant.js && node --check public/exam/fullscreen-compatibility.js && node --check public/exam/japanese-readings.js && node --check public/exam/submission-request.js && node --check public/exam/student-entry-bridge.js && node --check public/exam/exam.js",
+    "check:generated": "node --check public/shared/safe-markdown.js && node --check public/exam/browser-compatibility.js && node --check public/exam/exam-behavior-guard.js && node --check public/exam/formula-assistant.js && node --check public/exam/fullscreen-compatibility.js && node --check public/exam/japanese-readings.js && node --check public/exam/submission-request.js && node --check public/exam/student-entry-bridge.js && node --check public/exam/student-localization.js && node --check public/exam/exam.js",
     "check:react-build": "node scripts/check-react-client-build.ts",
     "check:engineering": "node scripts/check-engineering-conventions.ts",
     "check:public-release": "node scripts/check-public-release.ts",

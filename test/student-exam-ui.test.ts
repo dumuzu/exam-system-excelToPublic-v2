@@ -6,6 +6,7 @@ const htmlUrl: any = new URL("../public/exam/index.html", import.meta.url);
 const scriptUrl: any = new URL("../public/exam/exam.js", import.meta.url);
 const behaviorGuardUrl: any = new URL("../public/exam/exam-behavior-guard.js", import.meta.url);
 const submissionRequestUrl: any = new URL("../public/exam/submission-request.js", import.meta.url);
+const localizationUrl: any = new URL("../public/exam/student-localization.js", import.meta.url);
 const cssUrl: any = new URL("../public/exam/exam.css", import.meta.url);
 
 test("violation overlay identifies leaving the exam window as cheating and enforces a five-second return delay", async () => {
@@ -15,7 +16,8 @@ test("violation overlay identifies leaving the exam window as cheating and enfor
   assert.match(html, /3回/);
   assert.match(html, /Leaving this exam window is cheating/);
   assert.match(script, /VIOLATION_ACKNOWLEDGEMENT_SECONDS\s*=\s*5/);
-  assert.match(script, /WAIT \$\{secondsRemaining\} SECONDS, THEN CLICK/);
+  assert.match(script, /secondsRemaining/);
+  assert.match(script, /studentText/);
 });
 
 test("active answer sheets suppress trackpad navigation and debounce transient focus loss", async () => {
@@ -44,10 +46,19 @@ test("formula workspace provides accessible completion help without the redundan
   assert.match(script, /applyFunctionCompletion/);
 });
 
-test("student questions render Japanese and English prompts together", async () => {
-  const [html, script] = await Promise.all([readFile(htmlUrl, "utf8"), readFile(scriptUrl, "utf8")]);
+test("student questions and shell follow the configured subject locale", async () => {
+  const [html, script, localization] = await Promise.all([
+    readFile(htmlUrl, "utf8"),
+    readFile(scriptUrl, "utf8"),
+    readFile(localizationUrl, "utf8"),
+  ]);
   assert.match(html, /id="questionPromptEn"/);
-  assert.match(script, /question\.promptEn/);
+  assert.match(script, /showJapanesePrompt/);
+  assert.match(script, /showEnglishPrompt/);
+  assert.match(script, /studentState\.studentLocale/);
+  assert.match(script, /applyStudentShellLocale/);
+  assert.match(localization, /legacy_bilingual/);
+  assert.match(localization, /在线考试/);
 });
 
 test("formal submission is guarded against startup and dialog click-through", async () => {
