@@ -184,3 +184,95 @@ test("subject settings audit binds UUID and text identifiers separately", async 
 
   assert.equal(subject.id, subjectId);
 });
+
+test("subject creation audit binds UUID and text identifiers separately", async () => {
+  let createdSubjectId = "";
+  const client: any = {
+    query: async (sql: string, values?: unknown[]) => {
+      if (sql.includes("INSERT INTO subjects")) {
+        createdSubjectId = String(values?.[0]);
+        return {
+          rows: [{
+            id: createdSubjectId,
+            subject_code: "it001",
+            name_ja: "開発入門",
+            name_zh: "系统开发入门",
+            name_en: "IT Test",
+            student_locale: "en",
+            assessment_type_key: "manual_questions",
+            subject_status: "active",
+          }],
+        };
+      }
+      if (sql.includes("INSERT INTO teacher_authorization_audit_events")) {
+        if (/\$3,'subject',\$3(?:::text)?/.test(sql)) {
+          throw Object.assign(new Error("inconsistent types deduced for parameter $3"), { code: "42P08" });
+        }
+        assert.match(sql, /\$3,'subject',\$4/);
+        assert.deepEqual(values?.slice(2), [createdSubjectId, createdSubjectId]);
+      }
+      return { rows: [] };
+    },
+    release() {},
+  };
+  const repository: any = new PostgresTeacherAccountRepository({
+    pool: { connect: async () => client, query: async () => ({ rows: [] }), end: async () => {} },
+  });
+
+  const subject = await repository.createSubject({
+    actorAccountId: "00000000-0000-4000-8000-000000000001",
+    code: "it001",
+    nameJa: "開発入門",
+    nameZh: "系统开发入门",
+    nameEn: "IT Test",
+    studentLocale: "en",
+    assessmentTypeKeys: ["manual_questions"],
+  });
+
+  assert.equal(subject.id, createdSubjectId);
+  assert.equal(subject.code, "it001");
+});
+
+test("subject status audit binds UUID and text identifiers separately", async () => {
+  const subjectId = "22e756e2-91c1-43a8-a7dc-a7ae381f73c6";
+  const row = {
+    id: subjectId,
+    subject_code: "it001",
+    name_ja: "開発入門",
+    name_zh: "系统开发入门",
+    name_en: "IT Test",
+    student_locale: "en",
+    assessment_type_key: "manual_questions",
+    assessment_type_keys: ["manual_questions"],
+    subject_status: "archived",
+    membership_count: 0,
+  };
+  const client: any = {
+    query: async (sql: string, values?: unknown[]) => {
+      if (sql.includes("FROM subjects subject WHERE subject.id=$1 FOR UPDATE")) {
+        return { rows: [{ ...row, subject_status: "active" }] };
+      }
+      if (sql.includes("UPDATE subjects SET subject_status")) return { rows: [row] };
+      if (sql.includes("INSERT INTO teacher_authorization_audit_events")) {
+        if (/\$3,'subject',\$3(?:::text)?/.test(sql)) {
+          throw Object.assign(new Error("inconsistent types deduced for parameter $3"), { code: "42P08" });
+        }
+        assert.match(sql, /\$3,'subject',\$4,\$5/);
+        assert.deepEqual(values?.slice(2), [subjectId, subjectId, "SUBJECT_ARCHIVED"]);
+      }
+      return { rows: [] };
+    },
+    release() {},
+  };
+  const repository: any = new PostgresTeacherAccountRepository({
+    pool: { connect: async () => client, query: async () => ({ rows: [] }), end: async () => {} },
+  });
+
+  const subject = await repository.setSubjectStatus({
+    actorAccountId: "00000000-0000-4000-8000-000000000001",
+    subjectId,
+    status: "archived",
+  });
+
+  assert.equal(subject.status, "archived");
+});

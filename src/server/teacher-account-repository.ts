@@ -1007,8 +1007,8 @@ export class PostgresTeacherAccountRepository implements TeacherAccountRepositor
       await client.query(
         `INSERT INTO teacher_authorization_audit_events (
            id,actor_account_id,action,subject_id,resource_type,resource_id,decision_code
-         ) VALUES ($1,$2,'manage_subjects',$3,'subject',$3::text,'SUBJECT_CREATED')`,
-        [randomUUID(), input.actorAccountId, subjectId],
+         ) VALUES ($1,$2,'manage_subjects',$3,'subject',$4,'SUBJECT_CREATED')`,
+        [randomUUID(), input.actorAccountId, subjectId, subjectId],
       );
       await client.query("COMMIT");
       const row = result.rows[0]!;
@@ -1291,8 +1291,8 @@ export class PostgresTeacherAccountRepository implements TeacherAccountRepositor
       await client.query(
         `INSERT INTO teacher_authorization_audit_events (
            id,actor_account_id,action,subject_id,resource_type,resource_id,decision_code
-         ) VALUES ($1,$2,'manage_subjects',$3,'subject',$3::text,$4)`,
-        [randomUUID(), input.actorAccountId, input.subjectId, input.status === "archived" ? "SUBJECT_ARCHIVED" : "SUBJECT_RESTORED"],
+         ) VALUES ($1,$2,'manage_subjects',$3,'subject',$4,$5)`,
+        [randomUUID(), input.actorAccountId, input.subjectId, input.subjectId, input.status === "archived" ? "SUBJECT_ARCHIVED" : "SUBJECT_RESTORED"],
       );
       await client.query("COMMIT");
       const row = updated.rows[0]!;

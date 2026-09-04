@@ -105,7 +105,7 @@ export function SubjectEditorDialog({ csrfToken, locale, onClose, onComplete, su
               <p>{t.immutable}</p>
             </div>
           ) : (
-            <TextField autoComplete="off" hint={t.codeHint} id="subjectCode" label={t.code} maxLength={64} onChange={(event) => setCode(event.currentTarget.value)} pattern="[a-z0-9][a-z0-9-]{1,63}" required value={code} />
+            <TextField autoComplete="off" hint={t.codeHint} id="subjectCode" label={t.code} maxLength={64} onChange={(event) => setCode(event.currentTarget.value)} pattern="[a-z0-9][a-z0-9\-]{1,63}" required value={code} />
           )}
           <fieldset className="subjectCapabilityFieldset">
             <legend>{t.adapter}</legend>

@@ -269,5 +269,8 @@ test("account and subject management pages are route-lazy React super-administra
   assert.match(subjectApi, /x-csrf-token/);
   assert.doesNotMatch(subjectDialog, /confirmationMatches|subjectStatusConfirmation/);
   assert.doesNotMatch(subjectEditor, /setAssessmentTypeKeys\(\(current\)\s*=>\s*event\.currentTarget\.checked/);
+  const subjectCodePattern = subjectEditor.match(/pattern="([^"]+)"/)?.[1];
+  assert.ok(subjectCodePattern);
+  assert.doesNotThrow(() => new RegExp(`^(?:${subjectCodePattern})$`, "v"));
   assert.doesNotMatch(`${route}${api}${actionDialog}${subjectRoute}${subjectApi}${subjectDialog}`, /passwordHash|sessionSecret/);
 });
