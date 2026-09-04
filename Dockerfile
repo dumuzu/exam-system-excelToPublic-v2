@@ -1,5 +1,9 @@
 FROM node:24-bookworm-slim
 
+LABEL org.opencontainers.image.source="https://github.com/dumuzu/exam-system-excelToPublic-v2" \
+      org.opencontainers.image.description="Self-hosted multi-subject examination system" \
+      org.opencontainers.image.licenses="MIT"
+
 WORKDIR /app
 
 ENV NODE_ENV=production \

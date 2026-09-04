@@ -1,7 +1,5 @@
 x-app-image: &appImage
-  image: exam-system-excel-to-public-v2:${IMAGE_TAG:-local}
-  build:
-    context: .
+  image: ${APP_IMAGE:-ghcr.io/dumuzu/exam-system-exceltopublic-v2}:${IMAGE_TAG:-latest}
 
 x-database-environment: &databaseEnvironment
   DATABASE_URL: postgresql://${POSTGRES_USER:-exam_system}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.docker}@postgres:5432/${POSTGRES_DB:-exam_system}?sslmode=disable

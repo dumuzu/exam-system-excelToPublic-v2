@@ -1,0 +1,17 @@
+x-local-build: &localBuild
+  image: exam-system-excel-to-public-v2:${IMAGE_TAG:-local}
+  build:
+    context: .
+
+services:
+  validate:
+    <<: *localBuild
+
+  migrate:
+    <<: *localBuild
+
+  bootstrap:
+    <<: *localBuild
+
+  app:
+    <<: *localBuild
