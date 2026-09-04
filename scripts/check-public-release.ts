@@ -4,11 +4,12 @@ import { fileURLToPath } from "node:url";
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const excludedLocalEntries = new Set([".git", "node_modules", ".env"]);
+const allowedEnvironmentExamples = new Set([".env.example", ".env.docker.example"]);
 
 async function listReleaseFiles(directory: string, relativeDirectory = ""): Promise<string[]> {
   const files: string[] = [];
   for (const entry of await readdir(directory, { withFileTypes: true })) {
-    if (excludedLocalEntries.has(entry.name) || (entry.name.startsWith(".env.") && entry.name !== ".env.example")) continue;
+    if (excludedLocalEntries.has(entry.name) || (entry.name.startsWith(".env.") && !allowedEnvironmentExamples.has(entry.name))) continue;
     const relativePath = path.posix.join(relativeDirectory, entry.name);
     if (entry.isDirectory()) {
       files.push(...await listReleaseFiles(path.join(directory, entry.name), relativePath));

@@ -275,20 +275,31 @@ HOST=0.0.0.0 PORT=4173 npm start
 
 ### Docker
 
-仓库提供不包含测试和本机文件的运行镜像：
+仓库提供完整的 Docker Compose 初始化流程，包含 PostgreSQL、环境校验、顺序迁移、首个管理员初始化和应用健康检查。先复制专用模板：
 
-```bash
-docker build -t exam-system-excel-to-public-v2 .
-docker run --rm --env-file .env exam-system-excel-to-public-v2 npm run db:migrate
-docker run --rm --env-file .env \
-  -e BOOTSTRAP_ADMIN_USERNAME=admin \
-  -e BOOTSTRAP_ADMIN_DISPLAY_NAME=Administrator \
-  -e BOOTSTRAP_ADMIN_PASSWORD='replace-with-a-strong-password' \
-  exam-system-excel-to-public-v2 npm run auth:bootstrap
-docker run -d --name exam-system -p 4173:4173 --env-file .env exam-system-excel-to-public-v2
+```powershell
+Copy-Item .env.docker.example .env.docker
 ```
 
-数据库可以是自建 PostgreSQL、托管 PostgreSQL 或容器外的独立数据库。不要把数据库密码写进镜像或提交到仓库。
+Linux/macOS 使用 `cp .env.docker.example .env.docker`。打开 `.env.docker`，替换所有以 `replace-` 开头的值；数据库密码请只使用字母、数字、下划线和连字符。然后执行：
+
+```bash
+docker compose --env-file .env.docker up -d --build
+docker compose --env-file .env.docker ps
+```
+
+访问 `http://127.0.0.1:4173/admin/`，使用 `.env.docker` 中的初始管理员登录。首次登录成功后，应从 `.env.docker` 删除 `BOOTSTRAP_ADMIN_PASSWORD`；再次运行同一条启动命令时，初始化任务会识别已有管理员并安全跳过。
+
+查看日志和停止服务：
+
+```bash
+docker compose --env-file .env.docker logs -f app
+docker compose --env-file .env.docker down
+```
+
+`down` 会保留 PostgreSQL 命名卷。只有明确要永久删除全部数据库内容时才使用 `docker compose --env-file .env.docker down --volumes`。PostgreSQL 默认不向宿主机开放 5432 端口；应用只发布 `APP_PORT`。不要提交 `.env.docker`，也不要把密码写进镜像。
+
+如需使用托管 PostgreSQL 或自行编排容器，仍可按上一节分别执行 `npm run db:migrate`、`npm run auth:bootstrap` 和 `npm start`，不强制采用仓库内置数据库。
 
 ### Vercel（可选）
 

@@ -11,7 +11,14 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
+    env:
+      POSTGRES_PASSWORD: ci_only_database_password_2026
+      SESSION_SECRET: ci-only-session-secret-that-is-longer-than-thirty-two-characters
+      CRON_SECRET: ci-only-cron-secret-that-is-separate-and-longer-than-thirty-two
+      BOOTSTRAP_ADMIN_USERNAME: ci-admin
+      BOOTSTRAP_ADMIN_DISPLAY_NAME: CI Administrator
+      BOOTSTRAP_ADMIN_PASSWORD: ci-only-admin-password-2026
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -21,4 +28,21 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm test
-      - run: docker build --tag exam-system-excel-to-public-v2:ci .
+      - run: docker compose config --quiet
+      - run: docker compose up -d --build
+      - name: Verify the initialized application
+        run: |
+          for attempt in {1..40}; do
+            if curl --fail --silent http://127.0.0.1:4173/api/health; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker compose ps
+          docker compose logs --no-color
+          exit 1
+      - name: Verify repeated administrator bootstrap
+        run: BOOTSTRAP_ADMIN_PASSWORD= docker compose run --rm bootstrap
+      - name: Clean up Docker services
+        if: always()
+        run: docker compose down --volumes

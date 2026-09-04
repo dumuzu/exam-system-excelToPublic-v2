@@ -30,17 +30,9 @@ const connectionString = process.env["MIGRATION_DATABASE_URL"];
 const username = process.env["BOOTSTRAP_ADMIN_USERNAME"]?.trim();
 const displayName = process.env["BOOTSTRAP_ADMIN_DISPLAY_NAME"]?.trim();
 const password = process.env["BOOTSTRAP_ADMIN_PASSWORD"];
+const bootstrapIfMissing = process.env["BOOTSTRAP_IF_MISSING"]?.trim().toLowerCase() === "true";
 
 if (!connectionString) throw new Error("MIGRATION_DATABASE_URL is required.");
-if (!username || username.length > 100 || /[\u0000-\u001f\u007f]/.test(username)) {
-  throw new Error("BOOTSTRAP_ADMIN_USERNAME must contain 1-100 printable characters.");
-}
-if (!displayName || displayName.length > 100 || /[\u0000-\u001f\u007f]/.test(displayName)) {
-  throw new Error("BOOTSTRAP_ADMIN_DISPLAY_NAME must contain 1-100 printable characters.");
-}
-if (!password || password.length < 12 || password.length > 200 || password.trim().length === 0) {
-  throw new Error("BOOTSTRAP_ADMIN_PASSWORD must contain 12-200 characters.");
-}
 
 const pool = new Pool({ connectionString, max: 1, connectionTimeoutMillis: 10_000 });
 const client = await pool.connect();
@@ -52,29 +44,44 @@ try {
     "SELECT EXISTS (SELECT 1 FROM teacher_accounts WHERE platform_role='super_admin' AND account_status='active') AS exists",
   );
   if (existingSuperAdmin.rows[0]?.exists) {
-    throw new Error("An active super administrator already exists. Create additional accounts from the system administration UI.");
+    if (bootstrapIfMissing) {
+      await client.query("COMMIT");
+      process.stdout.write("An active super administrator already exists; bootstrap was skipped.\n");
+    } else {
+      throw new Error("An active super administrator already exists. Create additional accounts from the system administration UI.");
+    }
+  } else {
+    if (!username || username.length > 100 || /[\u0000-\u001f\u007f]/.test(username)) {
+      throw new Error("BOOTSTRAP_ADMIN_USERNAME must contain 1-100 printable characters.");
+    }
+    if (!displayName || displayName.length > 100 || /[\u0000-\u001f\u007f]/.test(displayName)) {
+      throw new Error("BOOTSTRAP_ADMIN_DISPLAY_NAME must contain 1-100 printable characters.");
+    }
+    if (!password || password.length < 12 || password.length > 200 || password.trim().length === 0) {
+      throw new Error("BOOTSTRAP_ADMIN_PASSWORD must contain 12-200 characters when no administrator exists.");
+    }
+
+    const canonicalConflict = await client.query<{ exists: boolean }>(
+      "SELECT EXISTS (SELECT 1 FROM teachers WHERE lower(btrim(login_name))=lower(btrim($1))) AS exists",
+      [username],
+    );
+    if (canonicalConflict.rows[0]?.exists) throw new Error("The requested administrator username already exists.");
+
+    const accountId = randomUUID();
+    const passwordHash = hashAdminPassword(password);
+    await client.query(
+      "INSERT INTO teachers (id,login_name,display_name,preferred_locale) VALUES ($1,$2,$3,'zh')",
+      [accountId, username, displayName],
+    );
+    await client.query(
+      `INSERT INTO teacher_accounts (
+         id,password_hash,platform_role,account_status,activated_at
+       ) VALUES ($1,$2,'super_admin','active',CURRENT_TIMESTAMP)`,
+      [accountId, passwordHash],
+    );
+    await client.query("COMMIT");
+    process.stdout.write(`Super administrator created for ${username}. Remove BOOTSTRAP_ADMIN_PASSWORD from the environment now.\n`);
   }
-
-  const canonicalConflict = await client.query<{ exists: boolean }>(
-    "SELECT EXISTS (SELECT 1 FROM teachers WHERE lower(btrim(login_name))=lower(btrim($1))) AS exists",
-    [username],
-  );
-  if (canonicalConflict.rows[0]?.exists) throw new Error("The requested administrator username already exists.");
-
-  const accountId = randomUUID();
-  const passwordHash = hashAdminPassword(password);
-  await client.query(
-    "INSERT INTO teachers (id,login_name,display_name,preferred_locale) VALUES ($1,$2,$3,'zh')",
-    [accountId, username, displayName],
-  );
-  await client.query(
-    `INSERT INTO teacher_accounts (
-       id,password_hash,platform_role,account_status,activated_at
-     ) VALUES ($1,$2,'super_admin','active',CURRENT_TIMESTAMP)`,
-    [accountId, passwordHash],
-  );
-  await client.query("COMMIT");
-  process.stdout.write(`Super administrator created for ${username}. Remove BOOTSTRAP_ADMIN_PASSWORD from the environment now.\n`);
 } catch (error) {
   await client.query("ROLLBACK");
   throw error;

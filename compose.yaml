@@ -1,0 +1,89 @@
+x-app-image: &appImage
+  image: exam-system-excel-to-public-v2:${IMAGE_TAG:-local}
+  build:
+    context: .
+
+x-database-environment: &databaseEnvironment
+  DATABASE_URL: postgresql://${POSTGRES_USER:-exam_system}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.docker}@postgres:5432/${POSTGRES_DB:-exam_system}?sslmode=disable
+  MIGRATION_DATABASE_URL: postgresql://${POSTGRES_USER:-exam_system}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.docker}@postgres:5432/${POSTGRES_DB:-exam_system}?sslmode=disable
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-exam_system}
+      POSTGRES_USER: ${POSTGRES_USER:-exam_system}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.docker}
+    volumes:
+      - postgresData:/var/lib/postgresql/data
+    depends_on:
+      validate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  validate:
+    <<: *appImage
+    restart: "no"
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.docker}
+      SESSION_SECRET: ${SESSION_SECRET:?Set SESSION_SECRET in .env.docker}
+      CRON_SECRET: ${CRON_SECRET:?Set CRON_SECRET in .env.docker}
+      BOOTSTRAP_ADMIN_PASSWORD: ${BOOTSTRAP_ADMIN_PASSWORD:-}
+    command: ["npm", "run", "docker:validate"]
+
+  migrate:
+    <<: *appImage
+    restart: "no"
+    environment:
+      <<: *databaseEnvironment
+    depends_on:
+      postgres:
+        condition: service_healthy
+      validate:
+        condition: service_completed_successfully
+    command: ["npm", "run", "db:migrate"]
+
+  bootstrap:
+    <<: *appImage
+    restart: "no"
+    environment:
+      <<: *databaseEnvironment
+      BOOTSTRAP_IF_MISSING: "true"
+      BOOTSTRAP_ADMIN_USERNAME: ${BOOTSTRAP_ADMIN_USERNAME:-admin}
+      BOOTSTRAP_ADMIN_DISPLAY_NAME: ${BOOTSTRAP_ADMIN_DISPLAY_NAME:-System Administrator}
+      BOOTSTRAP_ADMIN_PASSWORD: ${BOOTSTRAP_ADMIN_PASSWORD:-}
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    command: ["npm", "run", "auth:bootstrap"]
+
+  app:
+    <<: *appImage
+    restart: unless-stopped
+    environment:
+      <<: *databaseEnvironment
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 4173
+      ENABLE_TEST_ADMIN: "false"
+      SESSION_SECRET: ${SESSION_SECRET:?Set SESSION_SECRET in .env.docker}
+      CRON_SECRET: ${CRON_SECRET:?Set CRON_SECRET in .env.docker}
+      DATABASE_POOL_MAX: ${DATABASE_POOL_MAX:-4}
+    ports:
+      - "${APP_PORT:-4173}:4173"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+      bootstrap:
+        condition: service_completed_successfully
+
+volumes:
+  postgresData:

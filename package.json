@@ -16,6 +16,7 @@
     "check:engineering": "node scripts/check-engineering-conventions.ts",
     "check:public-release": "node scripts/check-public-release.ts",
     "check": "npm run typecheck && npm run build:client && npm run check:generated && npm run check:react-build && npm run check:engineering && npm run check:public-release",
+    "docker:validate": "node scripts/validate-docker-environment.ts",
     "db:migrate": "node --env-file-if-exists=.env scripts/apply-database-migrations.ts",
     "db:audit": "node --env-file-if-exists=.env scripts/audit-postgres-stability.ts",
     "auth:bootstrap": "node --env-file-if-exists=.env scripts/bootstrap-super-admin.ts",
